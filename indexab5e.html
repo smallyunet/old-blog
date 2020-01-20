@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from oldblog.smallyu.net/?id=40 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2020 07:50:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>一个简单的验证码生成类（PHP）_未分类_smallyu</title>
+<meta name="keywords" content="PHP,验证码"/>
+<meta name="description" content="可配置项：/** &nbsp;*&nbsp;$_fontfile=&#39;&#39;;&nbsp;//&nbsp;字体文件 &nbsp;*&nbsp;$_size=20;&nbsp;//&nbsp;字体大小 &nbsp;*&nbsp;$_width=120;&n..."/>
+<meta name="author" content="smallyu">
+<link rel='prev' title='2016下半年年度总结，2017上半年年度展望' href='index1e35.html?id=39' />
+<link rel='next' title='PHP面向对象编程的基本原则，以及三种基本设计模式' href='index7df0.html?id=41' />
+<link rel='canonical' href='indexab5e.html?id=40' />
+<link rel='shortlink' href='indexab5e.html?id=40' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <style type="text/css">
+    .home::before {
+    font-size: 90px;
+    font-family: 'efe-icons';
+    content: "";
+    display: block;
+    margin-bottom: 10px;
+}
+</style>
+<link rel="stylesheet" href="zb_users/theme/ydefe/style/page.min.css" type="text/css">
+<script src="zb_system/script/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="zb_system/script/zblogphp.js" type="text/javascript"></script>
+<script src="zb_system/script/c_html_js_add.js" type="text/javascript"></script>
+</head><body>
+
+<aside>
+	<a class="home" href="index.html" title="smallyu">
+	    <img src="zb_users/theme/ydefe/style/images/logo.png" /><br />
+        <abbr title="EFE">smallyu</abbr>
+    </a>
+  <nav> <a href="Hello%20World.html" target="_blank">Hello World</a> </nav>
+  <div class="sidebarleft-mb">
+    <ul class="product-overview-side-mb">
+      <li id="nvabar-item-index"><a href="index.html">首页</a></li>
+<li id="navbar-page-16"><a href="index2728.html?id=16">关于</a></li>
+    </ul>
+  </div>
+      
+<div class="sidebarleft widget_navbar">
+   
+  <div class="product-overview-side efe-desc widget_divNavBar_inner"><div class="sidebg"><li id="nvabar-item-index"><a href="index.html">首页</a></li>
+<li id="navbar-page-16"><a href="index2728.html?id=16">关于</a></li>
+</div></div>
+         
+ 
+</div>
+<div class="sidebarleft widget_archives">
+<h4>文章归档</h4>
+   
+         
+  <ul class="product-overview-side ">
+ <li><a href="indexb0b4.html?date=2017-8">2017年8月 (6)</a></li>
+<li><a href="indexcb7e.html?date=2017-7">2017年7月 (2)</a></li>
+<li><a href="index276d.html?date=2017-6">2017年6月 (3)</a></li>
+<li><a href="index5523.html?date=2017-5">2017年5月 (2)</a></li>
+<li><a href="indexb2e3.html?date=2017-4">2017年4月 (2)</a></li>
+<li><a href="index10ae.html?date=2017-3">2017年3月 (3)</a></li>
+<li><a href="index8cef.html?date=2017-2">2017年2月 (3)</a></li>
+<li><a href="index8bcc.html?date=2017-1">2017年1月 (4)</a></li>
+<li><a href="index9f2f.html?date=2016-12">2016年12月 (1)</a></li>
+<li><a href="index50f5.html?date=2016-11">2016年11月 (2)</a></li>
+<li><a href="indexf32d.html?date=2016-10">2016年10月 (3)</a></li>
+<li><a href="index91d7.html?date=2016-9">2016年9月 (1)</a></li>
+<li><a href="index917c.html?date=2016-8">2016年8月 (6)</a></li>
+<li><a href="index34d3.html?date=2016-7">2016年7月 (1)</a></li>
+<li><a href="indexe6af.html?date=2016-6">2016年6月 (4)</a></li>
+<li><a href="index1d06.html?date=2016-5">2016年5月 (4)</a></li>
+ </ul>
+ 
+</div>  </aside>
+
+
+<article>
+    
+        <h1><a href="indexab5e.html?id=40">一个简单的验证码生成类（PHP）</a></h1>
+    
+
+    <div class="article-meta">
+        <span class="article-author">
+        
+        <i class="fa fa-pencil"></i>
+        <a target="_blank" href="indexd381.html?auth=1" title="otakustay">smallyu</a>
+    
+</span>
+
+        <time><i class="fa fa-clock-o"></i> 2017-01-17</time>
+
+        
+        <span class="article-tags"><i class="fa fa-tag"></i> <a href="index85fc.html?tags=38" target="_blank">PHP</a>&nbsp;<a href="index191d.html?tags=32" target="_blank">验证码</a>&nbsp;</span>
+	    
+    
+    </div>
+        <p>可配置项：<br/></p><pre class="prism-highlight prism-language-php">/**
+&nbsp;*&nbsp;$_fontfile=&#39;&#39;;&nbsp;//&nbsp;字体文件
+&nbsp;*&nbsp;$_size=20;&nbsp;//&nbsp;字体大小
+&nbsp;*&nbsp;$_width=120;&nbsp;//&nbsp;画布宽度
+&nbsp;*&nbsp;$_height=40;&nbsp;//&nbsp;画布高度
+&nbsp;*&nbsp;$_length=4;&nbsp;//&nbsp;验证码长度
+&nbsp;*&nbsp;$_image=null;&nbsp;//&nbsp;画布资源
+&nbsp;*&nbsp;//&nbsp;干扰元素&nbsp;
+&nbsp;*&nbsp;$_snow=0;&nbsp;//&nbsp;雪花个数
+&nbsp;*&nbsp;$_pixel=0;&nbsp;//&nbsp;像素个数
+&nbsp;*&nbsp;$_line=0;&nbsp;//&nbsp;线段个数
+&nbsp;*/</pre><p>其中字体文件路径必须配置。</p><blockquote><p><span style="text-decoration: underline;">Captcha.class.php</span><br/></p></blockquote><pre class="prism-highlight prism-language-php">Class&nbsp;Captcha{
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;字体文件
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;$_fontfile=&#39;&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;字体大小
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;$_size=20;
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;画布宽度
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;$_width=120;
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;画布高度
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;$_height=40;
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;验证码长度
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;$_length=4;
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;画布资源
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;$_image=null;
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;干扰元素&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;雪花个数
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;$_snow=0;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;像素个数
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;$_pixel=0;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;线段个数
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;$_line=0;
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;初始化数据
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;array&nbsp;$config&nbsp;[description]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;__construct($config=array()){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(is_array($config)&amp;&amp;count($config)&gt;0){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;检测字体文件是否存在并且可读
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(isset($config[&#39;fontfile&#39;])&amp;&amp;is_file($config[&#39;fontfile&#39;])&amp;&amp;is_readable($config[&#39;fontfile&#39;])){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;_fontfile=$config[&#39;fontfile&#39;];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;检测是否设置字体大小
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(isset($config[&#39;size&#39;])&amp;&amp;$config[&#39;size&#39;]&gt;0){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;_size=(int)$config[&#39;size&#39;];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;检测是否设置画布宽和高
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(isset($config[&#39;width&#39;])&amp;&amp;$config[&#39;width&#39;]&gt;0){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;_width=(int)$config[&#39;width&#39;];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(isset($config[&#39;height&#39;])&amp;&amp;$config[&#39;height&#39;]&gt;0){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;_height=(int)$config[&#39;height&#39;];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;检测是否设置验证码长度
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(isset($config[&#39;length&#39;])&amp;&amp;$config[&#39;length&#39;]&gt;0){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;_length=(int)$config[&#39;length&#39;];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;配置干扰元素
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(isset($config[&#39;snow&#39;])&amp;&amp;$config[&#39;snow&#39;]&gt;0){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;_snow=(int)$config[&#39;snow&#39;];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(isset($config[&#39;pixel&#39;])&amp;&amp;$config[&#39;pixel&#39;]&gt;0){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;_pixel=(int)$config[&#39;pixel&#39;];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(isset($config[&#39;line&#39;])&amp;&amp;$config[&#39;line&#39;]&gt;0){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;_line=(int)$config[&#39;line&#39;];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;_image=imagecreatetruecolor($this-&gt;_width,&nbsp;$this-&gt;_height);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$this-&gt;_image;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;得到验证码
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;[type]&nbsp;[description]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;getCaptcha(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$white=imagecolorallocate($this-&gt;_image,&nbsp;255,&nbsp;255,&nbsp;255);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;填充矩形
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imagefilledrectangle($this-&gt;_image,&nbsp;0,&nbsp;0,&nbsp;$this-&gt;_width,&nbsp;$this-&gt;_height,&nbsp;$white);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;生成验证码
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$str=$this-&gt;_generateStr($this-&gt;_length);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(false==$str){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$fontfile=$this-&gt;_fontfile;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;绘制验证码
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for($i=0;$i&lt;$this-&gt;_length;$i++){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$size=$this-&gt;_size;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$angle=mt_rand(-30,30);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$x=ceil($this-&gt;_width/$this-&gt;_length)*$i+mt_rand(5,10);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$y=ceil($this-&gt;_height/1.5);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$color=$this-&gt;_getRandColor();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;$text=mb_substr($str,$i,1,&#39;utf-8&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$text=$str{$i};
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imagettftext($this-&gt;_image,&nbsp;$size,&nbsp;$angle,&nbsp;$x,&nbsp;$y,&nbsp;$color,&nbsp;$fontfile,&nbsp;$text);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($this-&gt;_snow){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;使用雪花当做干扰元素
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;_getSnow();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($this-&gt;_pixel){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;_getPixel();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($this-&gt;_line){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;_getLine();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;输出图像
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ob_clean();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;header(&#39;content-type:image/png&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imagepng($this-&gt;_image);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imagedestroy($this-&gt;_image);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;strtolower($str);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;产生雪花
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;[type]&nbsp;[description]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;function&nbsp;_getSnow(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for($i=1;$i&lt;=$this-&gt;_snow;$i++){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imagestring($this-&gt;_image,&nbsp;mt_rand(1,5),&nbsp;mt_rand(0,$this-&gt;_width),&nbsp;mt_rand(0,$this-&gt;_height),&nbsp;&#39;*&#39;,&nbsp;$this-&gt;_getRandColor());
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;绘制像素
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;[type]&nbsp;[description]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;function&nbsp;_getPixel(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for($i=1;$i&lt;=$this-&gt;_pixel;$i++){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imagesetpixel($this-&gt;_image,&nbsp;mt_rand(0,$this-&gt;_width),&nbsp;mt_rand(0,$this-&gt;_height),&nbsp;$this-&gt;_getRandColor());
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;绘制线段
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;[type]&nbsp;[description]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;function&nbsp;_getLine(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for($i=1;$i&lt;=$this-&gt;_line;$i++){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageline($this-&gt;_image,&nbsp;mt_rand(0,$this-&gt;_width),&nbsp;mt_rand(0,$this-&gt;_height),&nbsp;mt_rand(0,$this-&gt;_width),&nbsp;mt_rand(0,$this-&gt;_height),&nbsp;$this-&gt;_getRandColor());
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;产生验证码字符
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;integer&nbsp;$length&nbsp;验证码长度
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;随机字符
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;function&nbsp;_generateStr($length=4){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($length&lt;1||$length&gt;30){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$chars=array(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;,&#39;e&#39;,&#39;f&#39;,&#39;g&#39;,&#39;h&#39;,&#39;k&#39;,&#39;m&#39;,&#39;n&#39;,&#39;p&#39;,&#39;x&#39;,&#39;y&#39;,&#39;z&#39;,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;D&#39;,&#39;E&#39;,&#39;F&#39;,&#39;G&#39;,&#39;H&#39;,&#39;K&#39;,&#39;M&#39;,&#39;N&#39;,&#39;P&#39;,&#39;X&#39;,&#39;Y&#39;,&#39;Z&#39;,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;2&#39;,&#39;3&#39;,&#39;4&#39;,&#39;5&#39;,&#39;6&#39;,&#39;7&#39;,&#39;8&#39;,&#39;9&#39;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$str=join(&#39;&#39;,array_rand(array_flip($chars),$length));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$str;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;function&nbsp;_getRandColor(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;imagecolorallocate($this-&gt;_image,&nbsp;mt_rand(0,255),&nbsp;mt_rand(0,255),&nbsp;mt_rand(0,255));
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><p>然后在应用中使用这个类：</p><blockquote><p>captcha.php</p></blockquote><pre class="prism-highlight prism-language-php">require&nbsp;&#39;Captcha.class.php&#39;;
+ob_clean();
+$config=array(
+&nbsp;&nbsp;&nbsp;&nbsp;&#39;fontfile&#39;=&gt;&#39;INFROMAN.TTF&#39;,
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&#39;snow&#39;=&gt;10,
+&nbsp;&nbsp;&nbsp;&nbsp;&#39;pixel&#39;=&gt;100,
+&nbsp;&nbsp;&nbsp;&nbsp;&#39;line&#39;=&gt;5
+&nbsp;&nbsp;&nbsp;&nbsp;);
+$captcha=new&nbsp;Captcha($config);
+$captcha-&gt;getCaptcha();</pre><p>就可以生成类似这样的验证码：<br/></p><p><img src="zb_users/upload/2017/01/201701171484646995847698.png" style="" title="2.png"/></p><p>或者：</p><p><img src="zb_users/upload/2017/01/201701171484646997834282.png" style="" title="1.png"/></p><p>getCaptcha()会以字符串的形式返回验证码的值。</p><p>比较简单的一种验证码，用了PHP的扩展GD库。</p>    
+</article>
+<nav class="article-pagination">
+    
+    <a href="index1e35.html?id=39" class="article-prev">前一篇: 2016下半年年度总结，2017上半年年度展望</a>    <a href="index7df0.html?id=41" class="article-next">后一篇: PHP面向对象编程的基本原则，以及三种基本设计模式</a></nav>
+
+
+
+<footer>
+<p class="copy">Copyright Hower'Blog Rights Reserved.&nbsp;&nbsp;. Powered By <a href="http://www.zblogcn.com/" rel="nofollow" target="_blank">Z-BlogPHP</a>. theme by <a href="http://www.laiweishang.com/" target="_blank">微商货源</a></p></footer>
+</body>
+<!-- Mirrored from oldblog.smallyu.net/?id=40 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2020 07:50:35 GMT -->
+</html>
+
+
+<!--5.76 ms , 9 query , 680kb memory , 0 error-->

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from oldblog.smallyu.net/?id=45 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2020 07:50:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>PHP写简单爬虫抓取太工教务处通告中的，考试作弊学生名单_未分类_smallyu</title>
+<meta name="keywords" content="PHP,爬虫"/>
+<meta name="description" content="目标是太原工业学院（tit）教务处（http://jwc.tit.edu.cn）&nbsp;通告栏信息中考试作弊学生的名单。过程中涉及到的内容有：curl获取页面内容正则表达式匹配目标内容相关字符串处理函数整理数据mysql数据库基本操作首先打开教务处最新一条考试作弊通..."/>
+<meta name="author" content="smallyu">
+<link rel='prev' title='JAVA中的几种设计模式' href='indexa916.html?id=44' />
+<link rel='next' title='PHP-GTK初体验：用最简单的方式运行环境，并实现Hello World' href='index084d.html?id=46' />
+<link rel='canonical' href='index98dc.html?id=45' />
+<link rel='shortlink' href='index98dc.html?id=45' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <style type="text/css">
+    .home::before {
+    font-size: 90px;
+    font-family: 'efe-icons';
+    content: "";
+    display: block;
+    margin-bottom: 10px;
+}
+</style>
+<link rel="stylesheet" href="zb_users/theme/ydefe/style/page.min.css" type="text/css">
+<script src="zb_system/script/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="zb_system/script/zblogphp.js" type="text/javascript"></script>
+<script src="zb_system/script/c_html_js_add.js" type="text/javascript"></script>
+</head><body>
+
+<aside>
+	<a class="home" href="index.html" title="smallyu">
+	    <img src="zb_users/theme/ydefe/style/images/logo.png" /><br />
+        <abbr title="EFE">smallyu</abbr>
+    </a>
+  <nav> <a href="Hello%20World.html" target="_blank">Hello World</a> </nav>
+  <div class="sidebarleft-mb">
+    <ul class="product-overview-side-mb">
+      <li id="nvabar-item-index"><a href="index.html">首页</a></li>
+<li id="navbar-page-16"><a href="index2728.html?id=16">关于</a></li>
+    </ul>
+  </div>
+      
+<div class="sidebarleft widget_navbar">
+   
+  <div class="product-overview-side efe-desc widget_divNavBar_inner"><div class="sidebg"><li id="nvabar-item-index"><a href="index.html">首页</a></li>
+<li id="navbar-page-16"><a href="index2728.html?id=16">关于</a></li>
+</div></div>
+         
+ 
+</div>
+<div class="sidebarleft widget_archives">
+<h4>文章归档</h4>
+   
+         
+  <ul class="product-overview-side ">
+ <li><a href="indexb0b4.html?date=2017-8">2017年8月 (6)</a></li>
+<li><a href="indexcb7e.html?date=2017-7">2017年7月 (2)</a></li>
+<li><a href="index276d.html?date=2017-6">2017年6月 (3)</a></li>
+<li><a href="index5523.html?date=2017-5">2017年5月 (2)</a></li>
+<li><a href="indexb2e3.html?date=2017-4">2017年4月 (2)</a></li>
+<li><a href="index10ae.html?date=2017-3">2017年3月 (3)</a></li>
+<li><a href="index8cef.html?date=2017-2">2017年2月 (3)</a></li>
+<li><a href="index8bcc.html?date=2017-1">2017年1月 (4)</a></li>
+<li><a href="index9f2f.html?date=2016-12">2016年12月 (1)</a></li>
+<li><a href="index50f5.html?date=2016-11">2016年11月 (2)</a></li>
+<li><a href="indexf32d.html?date=2016-10">2016年10月 (3)</a></li>
+<li><a href="index91d7.html?date=2016-9">2016年9月 (1)</a></li>
+<li><a href="index917c.html?date=2016-8">2016年8月 (6)</a></li>
+<li><a href="index34d3.html?date=2016-7">2016年7月 (1)</a></li>
+<li><a href="indexe6af.html?date=2016-6">2016年6月 (4)</a></li>
+<li><a href="index1d06.html?date=2016-5">2016年5月 (4)</a></li>
+ </ul>
+ 
+</div>  </aside>
+
+
+<article>
+    
+        <h1><a href="index98dc.html?id=45">PHP写简单爬虫抓取太工教务处通告中的，考试作弊学生名单</a></h1>
+    
+
+    <div class="article-meta">
+        <span class="article-author">
+        
+        <i class="fa fa-pencil"></i>
+        <a target="_blank" href="indexd381.html?auth=1" title="otakustay">smallyu</a>
+    
+</span>
+
+        <time><i class="fa fa-clock-o"></i> 2017-02-19</time>
+
+        
+        <span class="article-tags"><i class="fa fa-tag"></i> <a href="index85fc.html?tags=38" target="_blank">PHP</a>&nbsp;<a href="index22d4.html?tags=40" target="_blank">爬虫</a>&nbsp;</span>
+	    
+    
+    </div>
+        <p>目标是太原工业学院（tit）教务处（<a href="http://jwc.tit.edu.xn--cn-s13az65kkib0wa40pbqbupg10d5njl9d8u6a1z5b9meg59b185b6bquj11c/" _src="http://jwc.tit.edu.cn）通告栏信息中考试作弊学生的名单。">http://jwc.tit.edu.cn</a>）&nbsp;通告栏信息中考试作弊学生的名单。</p><p>过程中涉及到的内容有：</p><ul class=" list-paddingleft-2" style="list-style-type: disc;"><li><p>curl获取页面内容</p></li><li><p>正则表达式匹配目标内容</p></li><li><p>相关字符串处理函数整理数据</p></li><li><p>mysql数据库基本操作</p></li></ul><p>首先打开教务处最新一条考试作弊通告，查看页面源代码，内容类似于：</p><p><img src="zb_users/upload/2017/02/201702191487511072510789.png" title="1.png" alt="1.png" width="705" height="299" style="width: 705px; height: 299px;"/></p><p>可以获取到两个信息：</p><ol class=" list-paddingleft-2" style="list-style-type: decimal;"><li><p>通告地址为：<a href="http://jwc.tit.edu.cn/info/news/content/3013.htm" _src="http://jwc.tit.edu.cn/info/news/content/3013.htm">http://jwc.tit.edu.cn/info/news/content/3013.htm</a>&nbsp;，有很明显的规律</p></li><li><p>页面内容太乱了。</p></li></ol><p>因为页面链接太有规律，我们可以用简单粗暴的方式来循环爬取各个页面，而不用分析页面中的链接然后执行另外的curl请求。</p><p>第二个信息是页面内容比较乱，主要是太多html标签+样式覆盖了内容。（吐槽一下教务处系统的开发者？）可以在得到页面内容后先过滤掉每个标签。</p><p>接下来开始写代码了。<br/></p><p>一、curl请求一共需要四个步骤：</p><blockquote><ol class=" list-paddingleft-2" style="list-style-type: decimal;"><li><p>初始化会话请求</p></li><li><p>设置请求选项，包括具体的url</p></li><li><p>执行一个curl会话并且获得相关回复</p></li><li><p>释放curl句柄，关闭一个curl会话<br/></p></li></ol></blockquote><p>涉及到的四个函数分别为：</p><pre class="prism-highlight prism-language-php">curl_init();
+curl_setopt();
+curl_exec();
+curl_close();</pre><p>略过一些内容后就可以拿到以字符串形式返回的包含页面内容的变量$response。<br/></p><p>二、然后写正则表达式结合一些函数来分离出所需信息，涉及到的函数有：<br/></p><pre class="prism-highlight prism-language-php">preg_replace();</pre><p>好像就这一个，功能很强大。关于正则表达式可以用这个在线工具：<a href="http://regexpal.isbadguy.com/" _src="http://regexpal.isbadguy.com/">http://regexpal.isbadguy.com/</a> </p><p>三、再然后整理数据，也就使用这个函数：</p><pre class="prism-highlight prism-language-php">substr();</pre><p>以数组形式返回整齐的数据。</p><p>四、最后就要把数据储存到mysql，表的结构是：（资源小浪费）</p><p><img src="zb_users/upload/2017/02/201702201487567639455976.png" title="搜狗截图20170220130805.png" alt="搜狗截图20170220130805.png"/></p><p>基本步骤之后可以拿到包含一个页面所需数据的数组。最终执行需要重复执行这些基本步骤很多（3013）次。</p><p>过程中用ob缓存来实时输出内容反馈到浏览器：<br/></p><pre class="prism-highlight prism-language-php">ob_flush();
+flush();</pre><p><strong>完整代码</strong><br/></p><pre class="prism-highlight prism-language-php">&lt;?php
+
+set_time_limit(0);&nbsp;&nbsp;//&nbsp;设置PHP最长执行时间
+
+$times&nbsp;=&nbsp;3013;
+while($times&nbsp;&gt;&nbsp;0){
+&nbsp;&nbsp;&nbsp;&nbsp;$url&nbsp;=&nbsp;&quot;http://jwc.tit.edu.cn/info/news/content/&quot;.$times.&quot;.htm&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;$url.&quot;&lt;br&nbsp;/&gt;&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;$res&nbsp;=&nbsp;curl($url);
+&nbsp;&nbsp;&nbsp;&nbsp;if($res){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data&nbsp;=&nbsp;getData($res);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($data){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data&nbsp;=&nbsp;infoArr($data);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;saveData($data);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}else{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$times++;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;ob_flush();&nbsp;//&nbsp;从缓存中输出内容
+&nbsp;&nbsp;&nbsp;&nbsp;flush();&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;刷出缓存内容到浏览器
+&nbsp;&nbsp;&nbsp;&nbsp;sleep(1);&nbsp;&nbsp;&nbsp;//&nbsp;延时1s执行
+&nbsp;&nbsp;&nbsp;&nbsp;$times--;
+}
+
+function&nbsp;curl($url&nbsp;=&nbsp;&quot;http://www.baidu.com&quot;){
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;1.初始化会话请求
+&nbsp;&nbsp;&nbsp;&nbsp;$ch&nbsp;=&nbsp;curl_init();
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;2.设置请求选项，包括具体的url
+&nbsp;&nbsp;&nbsp;&nbsp;curl_setopt($ch,&nbsp;CURLOPT_URL,&nbsp;$url);&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;需要获取的&nbsp;URL&nbsp;地址，也可以在curl_init()初始化会话的时候
+&nbsp;&nbsp;&nbsp;&nbsp;curl_setopt($ch,&nbsp;CURLOPT_RETURNTRANSFER,&nbsp;1);&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;TRUE&nbsp;将curl_exec()获取的信息以字符串返回，而不是直接输出
+&nbsp;&nbsp;&nbsp;&nbsp;curl_setopt($ch,&nbsp;CURLOPT_HEADER,&nbsp;0);&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;启用时会将头文件的信息作为数据流输出（到页面）
+&nbsp;&nbsp;&nbsp;&nbsp;curl_setopt($ch,&nbsp;CURLOPT_CONNECTTIMEOUT,&nbsp;30);&nbsp;&nbsp;&nbsp;//&nbsp;连接超时时长
+&nbsp;&nbsp;&nbsp;&nbsp;curl_setopt($ch,&nbsp;CURLOPT_TIMEOUT,&nbsp;30);&nbsp;&nbsp;//&nbsp;执行超时时长
+&nbsp;&nbsp;&nbsp;&nbsp;curl_setopt($ch,&nbsp;CURLOPT_HTTP_VERSION,&nbsp;CURL_HTTP_VERSION_1_0);&nbsp;//强制协议为1.0
+&nbsp;&nbsp;&nbsp;&nbsp;curl_setopt($ch,&nbsp;CURLOPT_HTTPHEADER,&nbsp;array(&quot;Expect:&nbsp;&quot;));&nbsp;//头部要送出&#39;Expect:&nbsp;&#39;
+&nbsp;&nbsp;&nbsp;&nbsp;curl_setopt($ch,&nbsp;CURLOPT_IPRESOLVE,&nbsp;CURL_IPRESOLVE_V4&nbsp;);&nbsp;//强制使用IPV4协议解析域名
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;3.执行一个curl会话并且获得相关回复
+&nbsp;&nbsp;&nbsp;&nbsp;$response&nbsp;=&nbsp;curl_exec($ch);
+&nbsp;&nbsp;&nbsp;&nbsp;if($response&nbsp;===&nbsp;false){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;0;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;4.释放curl句柄，关闭一个curl会话
+&nbsp;&nbsp;&nbsp;&nbsp;curl_close($ch);
+
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$response;
+}
+
+function&nbsp;getData($response&nbsp;=&nbsp;&#39;&#39;){
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;过滤html标签
+&nbsp;&nbsp;&nbsp;&nbsp;$replace_pattern&nbsp;=&nbsp;&#39;/&lt;[^&gt;]*&gt;/x&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;$str_replace&nbsp;=&nbsp;preg_replace($replace_pattern,&nbsp;&#39;&#39;,&nbsp;$response);
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;获取日期
+&nbsp;&nbsp;&nbsp;&nbsp;$dates&nbsp;=&nbsp;[];
+&nbsp;&nbsp;&nbsp;&nbsp;$date_pattern&nbsp;=&nbsp;&#39;/\d{1,4}年\d{1,2}月\d{1,2}日/u&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;preg_match_all($date_pattern,&nbsp;$str_replace,&nbsp;$dates);
+
+&nbsp;&nbsp;&nbsp;&nbsp;if(empty($dates[0])){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;0;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;($dates&nbsp;as&nbsp;$value)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;($value&nbsp;as&nbsp;$v)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$v&nbsp;=&nbsp;str_replace(array(&#39;年&#39;,&#39;月&#39;,&#39;日&#39;),&nbsp;array(&#39;-&#39;,&nbsp;&#39;-&#39;,&nbsp;&#39;&#39;),&nbsp;$v);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$date[]&nbsp;=&nbsp;$v;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;获取科目
+&nbsp;&nbsp;&nbsp;&nbsp;$subjects&nbsp;=&nbsp;[];
+&nbsp;&nbsp;&nbsp;&nbsp;$subject_pattern&nbsp;=&nbsp;&#39;/《[^(》|太)]*》/u&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;preg_match_all($subject_pattern,&nbsp;$str_replace,&nbsp;$subjects);
+
+&nbsp;&nbsp;&nbsp;&nbsp;if(empty($subjects[0])){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;0;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;($subjects&nbsp;as&nbsp;$value)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;($value&nbsp;as&nbsp;$v)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$subject[]&nbsp;=&nbsp;$v;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;获取学号姓名
+&nbsp;&nbsp;&nbsp;&nbsp;$students&nbsp;=&nbsp;[];
+&nbsp;&nbsp;&nbsp;&nbsp;$students_pattern&nbsp;=&nbsp;&#39;/\d{7,9}(班)?\d{0,2}(号)?[^(\d\w\s,)]{6,9}/x&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;preg_match_all($students_pattern,&nbsp;$str_replace,&nbsp;$students);
+
+&nbsp;&nbsp;&nbsp;&nbsp;if(empty($students[0])){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;0;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;$students=$students[0];
+
+&nbsp;&nbsp;&nbsp;&nbsp;foreach($students&nbsp;as&nbsp;$info){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$info&nbsp;=&nbsp;str_replace(array(&#39;班&#39;,&#39;号&#39;,&#39;在&#39;,&#39;、&#39;),&nbsp;&#39;&#39;,&nbsp;$info);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$stuId[]&nbsp;=&nbsp;substr($info,&nbsp;0,&nbsp;9);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$name[]&nbsp;=&nbsp;substr($info,&nbsp;9,&nbsp;11);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;$data[&#39;date&#39;]&nbsp;=&nbsp;$date;
+&nbsp;&nbsp;&nbsp;&nbsp;$data[&#39;subject&#39;]&nbsp;=&nbsp;$subject;
+&nbsp;&nbsp;&nbsp;&nbsp;$data[&#39;stuId&#39;]&nbsp;=&nbsp;$stuId;
+&nbsp;&nbsp;&nbsp;&nbsp;$data[&#39;name&#39;]&nbsp;=&nbsp;$name;
+
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$data;
+}
+
+function&nbsp;infoArr($data&nbsp;=&nbsp;[]){
+&nbsp;&nbsp;&nbsp;&nbsp;$dateNum&nbsp;=&nbsp;count($data[&#39;date&#39;]);
+&nbsp;&nbsp;&nbsp;&nbsp;$subNum&nbsp;=&nbsp;count($data[&#39;subject&#39;]);
+&nbsp;&nbsp;&nbsp;&nbsp;$idNum&nbsp;=&nbsp;count($data[&#39;stuId&#39;]);
+&nbsp;&nbsp;&nbsp;&nbsp;$nameNum&nbsp;=&nbsp;count($data[&#39;name&#39;]);
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;如果日期数目为1，其它不为1
+&nbsp;&nbsp;&nbsp;&nbsp;if($dateNum&nbsp;==&nbsp;1){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for($i&nbsp;=&nbsp;0;&nbsp;$i&nbsp;&lt;&nbsp;$idNum&nbsp;-&nbsp;1;&nbsp;$i++){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data[&#39;date&#39;][$i+1]&nbsp;=&nbsp;$data[&#39;date&#39;][$i];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;如果课程数为1，人数不为1
+&nbsp;&nbsp;&nbsp;&nbsp;if($subNum&nbsp;==&nbsp;1&nbsp;&amp;&amp;&nbsp;$idNum&nbsp;!=&nbsp;1){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for($i&nbsp;=&nbsp;0;&nbsp;$i&nbsp;&lt;&nbsp;$idNum&nbsp;-&nbsp;1;&nbsp;$i++){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data[&#39;date&#39;][$i+1]&nbsp;=&nbsp;$data[&#39;date&#39;][$i];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data[&#39;subject&#39;][$i+1]&nbsp;=&nbsp;$data[&#39;subject&#39;][$i];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;如果课程数大于1，人数大于课程数
+&nbsp;&nbsp;&nbsp;&nbsp;if($subNum&nbsp;&gt;&nbsp;1&nbsp;&amp;&amp;&nbsp;$idNum&nbsp;&gt;&nbsp;$subNum){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for($i&nbsp;=&nbsp;0;&nbsp;$i&nbsp;&lt;&nbsp;$idNum-1;&nbsp;$i++){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(substr($data[&#39;stuId&#39;][$i],&nbsp;0,&nbsp;5)&nbsp;==&nbsp;substr($data[&#39;stuId&#39;][$i+1],&nbsp;0,&nbsp;5)){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for($j&nbsp;=&nbsp;$idNum-1;&nbsp;$j&nbsp;&gt;&nbsp;$i;&nbsp;$j--){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data[&#39;subject&#39;][$j]&nbsp;=&nbsp;$data[&#39;subject&#39;][$j-1];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data[&#39;date&#39;][$j]&nbsp;=&nbsp;$data[&#39;date&#39;][$j-1];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;暂时忽略其它情况
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$data;
+}
+
+function&nbsp;saveData($data&nbsp;=&nbsp;[]){
+
+&nbsp;&nbsp;&nbsp;&nbsp;$mysql_host&nbsp;=&nbsp;&#39;localhost&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;$mysql_username&nbsp;=&nbsp;&#39;root&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;$mysql_password&nbsp;=&nbsp;&#39;root&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;$mysql_db&nbsp;=&nbsp;&#39;minyy&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;$mysql_table&nbsp;=&nbsp;&#39;cheat_exam&#39;;
+
+&nbsp;&nbsp;&nbsp;&nbsp;$link&nbsp;=&nbsp;mysql_connect($mysql_host,&nbsp;$mysql_username,&nbsp;$mysql_password);
+&nbsp;&nbsp;&nbsp;&nbsp;mysql_select_db($mysql_db,&nbsp;$link);
+&nbsp;&nbsp;&nbsp;&nbsp;mysql_query(&quot;set&nbsp;names&nbsp;utf8&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;$sql&nbsp;=&nbsp;&quot;CREATE&nbsp;TABLE&nbsp;IF&nbsp;NOT&nbsp;EXISTS&nbsp;$mysql_table(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;int(6)&nbsp;unsigned&nbsp;NOT&nbsp;NULL&nbsp;AUTO_INCREMENT,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PRIMARY&nbsp;KEY(id),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stuId&nbsp;int(11),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date&nbsp;date,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subject&nbsp;tinytext,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;tinytext
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;ENGINE=MyISAM&nbsp;&nbsp;DEFAULT&nbsp;CHARSET=utf8&nbsp;AUTO_INCREMENT=1&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;mysql_query($sql);
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;$times&nbsp;=&nbsp;count($data[&#39;stuId&#39;]);
+
+&nbsp;&nbsp;&nbsp;&nbsp;for($i&nbsp;=&nbsp;0;&nbsp;$i&nbsp;&lt;&nbsp;1;&nbsp;$i++){
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$stuId&nbsp;=&nbsp;$data[&#39;stuId&#39;][$i];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$date&nbsp;=&nbsp;&#39;&quot;&#39;.$data[&#39;date&#39;][$i].&#39;&quot;&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$subject&nbsp;=&nbsp;&#39;&quot;&#39;.$data[&#39;subject&#39;][$i].&#39;&quot;&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$name&nbsp;=&nbsp;&#39;&quot;&#39;.$data[&#39;name&#39;][$i].&#39;&quot;&#39;;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$sql&nbsp;=&nbsp;&quot;SELECT&nbsp;*&nbsp;FROM&nbsp;$mysql_table&nbsp;WHERE&nbsp;stuId={$data[&#39;stuId&#39;][$i]}&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$res&nbsp;=&nbsp;mysql_fetch_array(mysql_query($sql));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!$res){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$sql&nbsp;=&nbsp;&quot;INSERT&nbsp;INTO&nbsp;$mysql_table&nbsp;(stuId,&nbsp;date,&nbsp;subject,&nbsp;name)&nbsp;VALUES&nbsp;($stuId,&nbsp;$date,&nbsp;$subject,&nbsp;$name)&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mysql_query($sql);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;1;
+}</pre><p>事实上是比较简单的一段小程序。</p><p>执行后的页面会不断显示出一个一个网址。（忘了截图）</p><p>（由于网速慢）程序跑了很多（10？）个小时。</p><p>一共抓到106条数据，手工删掉几条非法数据后还剩98条。数据样本有点小啊。</p><p><img src="zb_users/upload/2017/02/201702191487511119176721.png" title="2.png" alt="2.png" width="693" height="469" style="width: 693px; height: 469px;"/></p><p>唯一（三）能得到的结果图：</p><p><img src="zb_users/upload/2017/02/201702191487513020390196.png" title="5553.png" alt="5553.png" width="696" height="471" style="width: 696px; height: 471px;"/></p><p>不同系部的人数分布如上。</p><p><img src="zb_users/upload/2017/02/201702191487511152333623.png" title="3.png" alt="3.png" width="691" height="458" style="width: 691px; height: 458px;"/></p><p>不同入学年份的学生人数分布如上。<br/></p><p><img src="zb_users/upload/2017/02/201702191487511179190399.png" title="搜狗截图20170219204308.png" alt="搜狗截图20170219204308.png" width="701" height="454" style="width: 701px; height: 454px;"/></p><p>不同年份考试的学生人数如上。（O__O &quot;…）</p><p>程序比较简单懒得详细写了，注释很全。不具有普遍性也就不封装成类了，得加很多判断好麻烦。</p><p>The End.<br/></p>    
+</article>
+<nav class="article-pagination">
+    
+    <a href="indexa916.html?id=44" class="article-prev">前一篇: JAVA中的几种设计模式</a>    <a href="index084d.html?id=46" class="article-next">后一篇: PHP-GTK初体验：用最简单的方式运行环境，并实现Hello World</a></nav>
+
+
+
+<footer>
+<p class="copy">Copyright Hower'Blog Rights Reserved.&nbsp;&nbsp;. Powered By <a href="http://www.zblogcn.com/" rel="nofollow" target="_blank">Z-BlogPHP</a>. theme by <a href="http://www.laiweishang.com/" target="_blank">微商货源</a></p></footer>
+</body>
+<!-- Mirrored from oldblog.smallyu.net/?id=45 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2020 07:50:34 GMT -->
+</html>
+
+
+<!--5.79 ms , 9 query , 721kb memory , 0 error-->

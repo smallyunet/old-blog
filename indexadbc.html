@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from oldblog.smallyu.net/?id=56 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2020 07:49:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>SPL中的常用迭代器和函数_未分类_smallyu</title>
+<meta name="keywords" content="SPL"/>
+<meta name="description" content="有一天，我去世了，恨我的人，翩翩起舞，爱我的人，眼泪如露。第二天，我的尸体头朝西埋在地下深处，恨我的人，看着我的坟墓，一脸笑意，爱我的人，不敢回头看那么一眼。一年后，我的尸骨已经腐烂，我的坟堆雨打风吹，恨我的人，偶尔在茶余饭后提到我时，仍然一脸恼怒，爱我的人，夜深人静时..."/>
+<meta name="author" content="smallyu">
+<link rel='prev' title='今天二十岁' href='indexa9e4.html?id=55' />
+<link rel='next' title='2017年上半年年度总结，2017年下半年年度展望' href='index850a.html?id=57' />
+<link rel='canonical' href='indexadbc.html?id=56' />
+<link rel='shortlink' href='indexadbc.html?id=56' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <style type="text/css">
+    .home::before {
+    font-size: 90px;
+    font-family: 'efe-icons';
+    content: "";
+    display: block;
+    margin-bottom: 10px;
+}
+</style>
+<link rel="stylesheet" href="zb_users/theme/ydefe/style/page.min.css" type="text/css">
+<script src="zb_system/script/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="zb_system/script/zblogphp.js" type="text/javascript"></script>
+<script src="zb_system/script/c_html_js_add.js" type="text/javascript"></script>
+</head><body>
+
+<aside>
+	<a class="home" href="index.html" title="smallyu">
+	    <img src="zb_users/theme/ydefe/style/images/logo.png" /><br />
+        <abbr title="EFE">smallyu</abbr>
+    </a>
+  <nav> <a href="Hello%20World.html" target="_blank">Hello World</a> </nav>
+  <div class="sidebarleft-mb">
+    <ul class="product-overview-side-mb">
+      <li id="nvabar-item-index"><a href="index.html">首页</a></li>
+<li id="navbar-page-16"><a href="index2728.html?id=16">关于</a></li>
+    </ul>
+  </div>
+      
+<div class="sidebarleft widget_navbar">
+   
+  <div class="product-overview-side efe-desc widget_divNavBar_inner"><div class="sidebg"><li id="nvabar-item-index"><a href="index.html">首页</a></li>
+<li id="navbar-page-16"><a href="index2728.html?id=16">关于</a></li>
+</div></div>
+         
+ 
+</div>
+<div class="sidebarleft widget_archives">
+<h4>文章归档</h4>
+   
+         
+  <ul class="product-overview-side ">
+ <li><a href="indexb0b4.html?date=2017-8">2017年8月 (6)</a></li>
+<li><a href="indexcb7e.html?date=2017-7">2017年7月 (2)</a></li>
+<li><a href="index276d.html?date=2017-6">2017年6月 (3)</a></li>
+<li><a href="index5523.html?date=2017-5">2017年5月 (2)</a></li>
+<li><a href="indexb2e3.html?date=2017-4">2017年4月 (2)</a></li>
+<li><a href="index10ae.html?date=2017-3">2017年3月 (3)</a></li>
+<li><a href="index8cef.html?date=2017-2">2017年2月 (3)</a></li>
+<li><a href="index8bcc.html?date=2017-1">2017年1月 (4)</a></li>
+<li><a href="index9f2f.html?date=2016-12">2016年12月 (1)</a></li>
+<li><a href="index50f5.html?date=2016-11">2016年11月 (2)</a></li>
+<li><a href="indexf32d.html?date=2016-10">2016年10月 (3)</a></li>
+<li><a href="index91d7.html?date=2016-9">2016年9月 (1)</a></li>
+<li><a href="index917c.html?date=2016-8">2016年8月 (6)</a></li>
+<li><a href="index34d3.html?date=2016-7">2016年7月 (1)</a></li>
+<li><a href="indexe6af.html?date=2016-6">2016年6月 (4)</a></li>
+<li><a href="index1d06.html?date=2016-5">2016年5月 (4)</a></li>
+ </ul>
+ 
+</div>  </aside>
+
+
+<article>
+    
+        <h1><a href="indexadbc.html?id=56">SPL中的常用迭代器和函数</a></h1>
+    
+
+    <div class="article-meta">
+        <span class="article-author">
+        
+        <i class="fa fa-pencil"></i>
+        <a target="_blank" href="indexd381.html?auth=1" title="otakustay">smallyu</a>
+    
+</span>
+
+        <time><i class="fa fa-clock-o"></i> 2017-06-16</time>
+
+        
+        <span class="article-tags"><i class="fa fa-tag"></i> <a href="indexb4d2.html?tags=49" target="_blank">SPL</a>&nbsp;</span>
+	    
+    
+    </div>
+        <blockquote><p>有一天，我去世了，恨我的人，翩翩起舞，爱我的人，眼泪如露。</p><p>第二天，我的尸体头朝西埋在地下深处，恨我的人，看着我的坟墓，一脸笑意，爱我的人，不敢回头看那么一眼。</p><p>一年后，我的尸骨已经腐烂，我的坟堆雨打风吹，恨我的人，偶尔在茶余饭后提到我时，仍然一脸恼怒，爱我的人，夜深人静时，无声的眼泪向谁哭诉。</p><p>十年后，我没有了尸体，只剩一些残骨。恨我的人，只隐约记得我的名字，已经忘了我的面目，爱我至深的人啊，想起我时，有短暂的沉默，生活把一切都渐渐模糊。</p><p>几十年后，我的坟堆雨打风吹去，唯有一片荒芜，恨我的人，把我遗忘，爱我至深的人，也跟着进入了坟墓。对这个世界来说，我彻底变成了虚无。我奋斗一生，带不走一草一木。我一生执着，带不走一分虚荣爱慕。</p><p>今生，无论贵贱贫富，总有一天都要走到这最后一步。</p><p>到了后世，霍然回首，我的这一生，形同虚度！我想痛哭，却发不出一点声音，我想忏悔，却已迟暮！用心去生活，别以他人的眼光为尺度。爱恨情仇其实都只是对自身活着的，每一天幸福就好。</p><p>珍惜内心最想要珍惜的，三千繁华，弹指刹那，百年之后，不过一捧黄沙。</p></blockquote><p><strong><br/></strong></p><p><strong>SPL的常用迭代器</strong>,通过某种统一的方式遍历链表或者数组中的元素的过程叫做迭代遍历，而这种统一的遍历工具我们叫做迭代器。</p><blockquote><p>ArrayIterator</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+$fruits&nbsp;=&nbsp;[
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;apple&quot;&nbsp;=&gt;&nbsp;&#39;apple&nbsp;value&#39;,&nbsp;//&nbsp;position&nbsp;=&nbsp;0
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;orange&quot;&nbsp;=&gt;&nbsp;&#39;orange&nbsp;value&#39;,&nbsp;//&nbsp;position&nbsp;=&nbsp;1
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;grape&quot;&nbsp;=&gt;&nbsp;&#39;grape&nbsp;value&#39;,
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;plum&quot;&nbsp;=&gt;&nbsp;&#39;plum&nbsp;value&#39;
+];
+//&nbsp;一般方式
+print_r($fruits);
+foreach($fruits&nbsp;as&nbsp;$key&nbsp;=&gt;&nbsp;$value){
+&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;$key.$value;
+}
+
+//&nbsp;使用ArrayIterator遍历数组
+$obj&nbsp;=&nbsp;new&nbsp;ArrayObject($fruits);
+$it&nbsp;=&nbsp;$obj-&gt;getIterator();
+//&nbsp;foreach方式
+foreach($it&nbsp;as&nbsp;$key&nbsp;=&gt;&nbsp;$value){
+&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;$key.$value;
+}
+/*&nbsp;foreach方式和普通的foreach方式没有区别，因为我们在使用foreach的过程中程序默认使用了迭代器，也就是底层实现的方式，先实例化数组为一个对象，然后调用迭代器的方法，进行遍历。&nbsp;*/
+//&nbsp;while方式
+$it-&gt;rewind();&nbsp;//&nbsp;调用current之前一定要rewind
+while($it-&gt;valid()){
+&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;$it-&gt;key().$it-&gt;current();
+&nbsp;&nbsp;&nbsp;&nbsp;$it-&gt;next();
+}
+/*&nbsp;while遍历的时候一定要记得rewin重置指针的位置。和普通foreach实现遍历相比，迭代器方式可以实现跳过某些元素再进行遍历，比如从位置1开始，而不是位置0.&nbsp;*/
+//&nbsp;跳过某些元素进行打印
+$it-&gt;rewind();
+if($it-&gt;valid()){
+&nbsp;&nbsp;&nbsp;&nbsp;$it-&gt;seek(1);&nbsp;//&nbsp;从position&nbsp;=&nbsp;1开始
+&nbsp;&nbsp;&nbsp;&nbsp;while($it-&gt;valid()){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;$it-&gt;key().$it-&gt;current();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$it-&gt;next();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+/*&nbsp;ksort方式使得遍历结果按照key的字典序排序，如果想要value按照字典序排序，则使用asort。&nbsp;*/
+$it-&gt;ksort();
+foreach($it&nbsp;as&nbsp;$key&nbsp;=&gt;&nbsp;$value){
+&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;$key.$value;
+}</pre><blockquote><p>AppendIterator</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+$array_a&nbsp;=&nbsp;new&nbsp;ArrayIterator([&#39;a&#39;,&nbsp;&#39;b&#39;,&nbsp;&#39;c&#39;]);
+$array_b&nbsp;=&nbsp;new&nbsp;ArrayIterator([&#39;d&#39;,&nbsp;&#39;e&#39;,&nbsp;&#39;f&#39;]);
+$it-&gt;append($array_a);
+$it-&gt;append($array_b);
+//&nbsp;通过append方法把迭代器对象添加到AppendIterator对象中
+foreach($it&nbsp;as&nbsp;$key&nbsp;=&gt;&nbsp;$value){
+&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;$value;
+}
+//&nbsp;只用一个foreach就可以实现多次遍历</pre><blockquote><p>MultipleIterator用于把多个Iterator里面的数据组合成为一个整体来访问</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+$idIter&nbsp;=&nbsp;new&nbsp;ArrayIterator([&#39;01&#39;,&nbsp;&#39;02&#39;,&nbsp;&#39;03&#39;]);
+$nameIter&nbsp;=&nbsp;new&nbsp;ArrayIterator([&#39;张三&#39;,&nbsp;&#39;李四&#39;,&nbsp;&#39;王五&#39;]);
+$ageIter&nbsp;=&nbsp;new&nbsp;ArrayIterator([&#39;22&#39;,&nbsp;&#39;23&#39;,&nbsp;&#39;25&#39;]);
+$mit&nbsp;=&nbsp;new&nbsp;MultipleIterator(MultipleIterator::MIT_KETS_ASSOC);
+$mit-&gt;attachIterator($idIter,&nbsp;&quot;ID&quot;);
+$mit-&gt;attachIterator($nameIter,&nbsp;&quot;NAME&quot;);
+$mit-&gt;attachIterator($ageIter,&nbsp;&quot;AGE&quot;);
+foreach&nbsp;($mit&nbsp;as&nbsp;$value)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;print_r($value);
+}</pre><blockquote><p>FilesystemIterator能遍历文件系统</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+$it&nbsp;=&nbsp;new&nbsp;FileSystemIterator(&#39;.&#39;);
+foreach&nbsp;($it&nbsp;as&nbsp;$finfo)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(&quot;%s\t%s\t%8s\t%s\n&quot;,date(&quot;Y-m-d&nbsp;H:i:s&quot;,&nbsp;$finfo-&gt;getMTime()),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$finfo-&gt;isDIr()&nbsp;?&nbsp;&quot;&lt;DIR&gt;&quot;&nbsp;:&nbsp;&quot;&quot;,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_format($finfo-&gt;getSize()),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$finfo-&gt;getFileName()
+&nbsp;&nbsp;&nbsp;&nbsp;);
+}</pre><p><strong>SPL基础接口</strong></p><blockquote><p>SPL的基础接口里面定义了最常用的接口</p><p>-Countable</p><p>--继承了接口的类可以直接调用count()得到元素个数</p><p>OuterIterator</p><p>--如果想对迭代器进行一定的处理之后再返回，可以用这个接口</p><p>RecursiveIterator</p><p>可以对多层结构的迭代器进行迭代，比如遍历一棵树</p><p>SeekableIteraor</p><p>可以通过seek方法定位到集合里面的某个特定元素</p></blockquote><p>Countable，在代码里面经常可以直接用count($obj)方法获得对象里面的元素的个数，对于自定义的类可以implements</p><pre class="prism-highlight prism-language-php">&lt;?php
+$array&nbsp;=&nbsp;[
+&nbsp;&nbsp;&nbsp;&nbsp;[1,&nbsp;2],
+&nbsp;&nbsp;&nbsp;&nbsp;[3,&nbsp;4],
+&nbsp;&nbsp;&nbsp;&nbsp;[5,&nbsp;6]
+];
+echo&nbsp;count($array);
+echo&nbsp;count($array[1]);
+
+&lt;?php
+class&nbsp;CountMe&nbsp;implements&nbsp;Countable&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;$_myCount&nbsp;=&nbsp;3;
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;count(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$this-&gt;_myCount;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+$obj&nbsp;=&nbsp;new&nbsp;CountMe();
+echo&nbsp;count($obj);</pre><blockquote><p>OuterIterator</p></blockquote><p>&nbsp; &nbsp; &nbsp; &nbsp;如果想对迭代器进行一定的处理之后再返回，可以用这个接口</p><p>&nbsp; &nbsp; &nbsp; &nbsp; IteratorIterator类是OuterIterator的实现，扩展的时候可以直接继承IteratorIterator</p><pre class="prism-highlight prism-language-php">&lt;?php
+$array&nbsp;=&nbsp;[&#39;1&#39;,&nbsp;&#39;2&#39;,&nbsp;&#39;3&#39;,&nbsp;&#39;4&#39;];
+$outerObj&nbsp;=&nbsp;new&nbsp;OuterImpl(new&nbsp;ArrayIterator($array));
+foreach&nbsp;($outerObj&nbsp;as&nbsp;$key&nbsp;=&gt;&nbsp;$value)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;$key.$value;
+}
+
+class&nbsp;OuterImpl&nbsp;extends&nbsp;Iterator&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;current()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;parent::current().&quot;_tail&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;key()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;&quot;Pre_&quot;.parent::key();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><blockquote><p>RecursiveIterator</p></blockquote><p>-可以对多层结构的迭代器进行迭代，比如遍历一棵树</p><p>-所有具有层次结构特点的数据都可以用这个接口遍历，如文件夹</p><p>关键方法</p><p>-hasChildren方法用于判断当前节点是否存在子节点</p><p>-getChildren方法用于得到当前节点子节点的迭代器</p><p>SPL实现该接口的类</p><p>-RecursiveArrayIterator，RecursiveCachingIterator等以Recursive开头的类都能够进行多层次结构化的遍历</p><blockquote><p>SeekableIterator</p></blockquote><p>-可以通过seek方法定位到集合里面的某个元素</p><p>-seek方法的参数是元素的位置，以0开始计算</p><p><strong>SPL函数的使用</strong></p><pre class="prism-highlight prism-language-php">&lt;?php
+spl_autoload_extensions(&#39;.class.php&#39;,&nbsp;&#39;.php&#39;);
+//&nbsp;设置autoload寻找php定义的类文件的扩展名，多个扩展名用逗号分隔，前面的扩展名优先被匹配
+set_include_path(get_include_path().PATH_SEPARATOR.&quot;libs/&quot;);
+//&nbsp;设置sutoload寻找php定义的类文件的目录，多个目录用PATH_SEPARATOR进行分隔
+spl_sutoload_register();
+//&nbsp;提示php使用Autoload机制查找类定义
+new&nbsp;ClassName();</pre><p>改进</p><pre class="prism-highlight prism-language-php">&lt;?php
+function&nbsp;__autoload($class_name){&nbsp;//&nbsp;定义__autoload函数，可以不调用spl_autoload_register函数的情况下完成类的装载
+&nbsp;&nbsp;&nbsp;&nbsp;require_once(&quot;libs/&quot;.$class_name.&quot;.php&quot;);&nbsp;//&nbsp;装载类
+}
+new&nbsp;ClassName();</pre><p>自定义装载</p><pre class="prism-highlight prism-language-php">&lt;?php
+function&nbsp;classLoader($class_name){&nbsp;//&nbsp;定义一个替换__autoload函数的类文件装载函数
+&nbsp;&nbsp;&nbsp;&nbsp;require_once(&quot;libs/&quot;.$class_name.&quot;.php&quot;);&nbsp;//&nbsp;装载类
+}
+spl_autoload_register(&#39;classLoader&#39;);&nbsp;//传入定义好的装载类的函数的名称替换__autoload函数
+new&nbsp;ClassName();</pre><p><br/></p><p>The End.</p>    
+</article>
+<nav class="article-pagination">
+    
+    <a href="indexa9e4.html?id=55" class="article-prev">前一篇: 今天二十岁</a>    <a href="index850a.html?id=57" class="article-next">后一篇: 2017年上半年年度总结，2017年下半年年度展望</a></nav>
+
+
+
+<footer>
+<p class="copy">Copyright Hower'Blog Rights Reserved.&nbsp;&nbsp;. Powered By <a href="http://www.zblogcn.com/" rel="nofollow" target="_blank">Z-BlogPHP</a>. theme by <a href="http://www.laiweishang.com/" target="_blank">微商货源</a></p></footer>
+</body>
+<!-- Mirrored from oldblog.smallyu.net/?id=56 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2020 07:49:55 GMT -->
+</html>
+
+
+<!--5.31 ms , 9 query , 644kb memory , 0 error-->

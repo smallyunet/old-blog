@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from oldblog.smallyu.net/?id=43 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2020 07:50:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>PHP中多种常用的设计模式举例_未分类_smallyu</title>
+<meta name="keywords" content="PHP,设计模式"/>
+<meta name="description" content="适配器模式策略模式数据对象映射模式观察者模式原型模式装饰器模式迭代器模式代理模式适配器模式1.适配器模式，可以将截然不同的函数接口封装成统一的API2.实际应用举例，PHP的数据库操作有mysql,musqli,pdo三种，可以用适配器模式统一成一致。类似的场景还有ca..."/>
+<meta name="author" content="smallyu">
+<link rel='prev' title='PHP面向对象编程的基本原则，以及三种基本设计模式' href='index7df0.html?id=41' />
+<link rel='next' title='JAVA中的几种设计模式' href='indexa916.html?id=44' />
+<link rel='canonical' href='index2580.html?id=43' />
+<link rel='shortlink' href='index2580.html?id=43' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <style type="text/css">
+    .home::before {
+    font-size: 90px;
+    font-family: 'efe-icons';
+    content: "";
+    display: block;
+    margin-bottom: 10px;
+}
+</style>
+<link rel="stylesheet" href="zb_users/theme/ydefe/style/page.min.css" type="text/css">
+<script src="zb_system/script/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="zb_system/script/zblogphp.js" type="text/javascript"></script>
+<script src="zb_system/script/c_html_js_add.js" type="text/javascript"></script>
+</head><body>
+
+<aside>
+	<a class="home" href="index.html" title="smallyu">
+	    <img src="zb_users/theme/ydefe/style/images/logo.png" /><br />
+        <abbr title="EFE">smallyu</abbr>
+    </a>
+  <nav> <a href="Hello%20World.html" target="_blank">Hello World</a> </nav>
+  <div class="sidebarleft-mb">
+    <ul class="product-overview-side-mb">
+      <li id="nvabar-item-index"><a href="index.html">首页</a></li>
+<li id="navbar-page-16"><a href="index2728.html?id=16">关于</a></li>
+    </ul>
+  </div>
+      
+<div class="sidebarleft widget_navbar">
+   
+  <div class="product-overview-side efe-desc widget_divNavBar_inner"><div class="sidebg"><li id="nvabar-item-index"><a href="index.html">首页</a></li>
+<li id="navbar-page-16"><a href="index2728.html?id=16">关于</a></li>
+</div></div>
+         
+ 
+</div>
+<div class="sidebarleft widget_archives">
+<h4>文章归档</h4>
+   
+         
+  <ul class="product-overview-side ">
+ <li><a href="indexb0b4.html?date=2017-8">2017年8月 (6)</a></li>
+<li><a href="indexcb7e.html?date=2017-7">2017年7月 (2)</a></li>
+<li><a href="index276d.html?date=2017-6">2017年6月 (3)</a></li>
+<li><a href="index5523.html?date=2017-5">2017年5月 (2)</a></li>
+<li><a href="indexb2e3.html?date=2017-4">2017年4月 (2)</a></li>
+<li><a href="index10ae.html?date=2017-3">2017年3月 (3)</a></li>
+<li><a href="index8cef.html?date=2017-2">2017年2月 (3)</a></li>
+<li><a href="index8bcc.html?date=2017-1">2017年1月 (4)</a></li>
+<li><a href="index9f2f.html?date=2016-12">2016年12月 (1)</a></li>
+<li><a href="index50f5.html?date=2016-11">2016年11月 (2)</a></li>
+<li><a href="indexf32d.html?date=2016-10">2016年10月 (3)</a></li>
+<li><a href="index91d7.html?date=2016-9">2016年9月 (1)</a></li>
+<li><a href="index917c.html?date=2016-8">2016年8月 (6)</a></li>
+<li><a href="index34d3.html?date=2016-7">2016年7月 (1)</a></li>
+<li><a href="indexe6af.html?date=2016-6">2016年6月 (4)</a></li>
+<li><a href="index1d06.html?date=2016-5">2016年5月 (4)</a></li>
+ </ul>
+ 
+</div>  </aside>
+
+
+<article>
+    
+        <h1><a href="index2580.html?id=43">PHP中多种常用的设计模式举例</a></h1>
+    
+
+    <div class="article-meta">
+        <span class="article-author">
+        
+        <i class="fa fa-pencil"></i>
+        <a target="_blank" href="indexd381.html?auth=1" title="otakustay">smallyu</a>
+    
+</span>
+
+        <time><i class="fa fa-clock-o"></i> 2017-01-25</time>
+
+        
+        <span class="article-tags"><i class="fa fa-tag"></i> <a href="index85fc.html?tags=38" target="_blank">PHP</a>&nbsp;<a href="index222e.html?tags=34" target="_blank">设计模式</a>&nbsp;</span>
+	    
+    
+    </div>
+        <div style="border: 1px solid #968A8A;padding: 5px;z-index: 2;background: rgba(245, 242, 240, 0.50);position:fixed;right:0;bottom:0;"><a href="#1">适配器模式</a><br/><a href="#2">策略模式</a><br/><a href="#3">数据对象映射模式</a><br/><a href="#4">观察者模式</a><br/><a href="#5">原型模式</a><br/><a href="#6">装饰器模式</a><br/><a href="#7">迭代器模式</a><br/><a href="#8">代理模式</a></div><p><strong><a name="1"></a>适配器模式</strong><br/></p><blockquote style="white-space: normal;"><p>1.适配器模式，可以将截然不同的函数接口封装成统一的API</p><p>2.实际应用举例，PHP的数据库操作有mysql,musqli,pdo三种，可以用适配器模式统一成一致。类似的场景还有cache适配器，将memcache，redis，file，apc等不同的缓存函数，统一成一致</p></blockquote><blockquote style="white-space: normal;"><p>Database.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+interdace&nbsp;IDatabase{
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;connect($host,&nbsp;$user,&nbsp;$passwd,&nbsp;$dbname);
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;query($sql);
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;close();
+}</pre><p style="white-space: normal;">在Database.php中定义了数据库操作的接口，接下来将MySQL、MySQLi、PDO三种数据库操作适配为接口中定义的方法。</p><blockquote style="white-space: normal;"><p>MySQL.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+namespace&nbsp;Database;
+class&nbsp;MySQL&nbsp;implements&nbsp;IDatabase{
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;$conn;
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;connect($host,&nbsp;$user,&nbsp;$passwd,&nbsp;$dbname){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$conn&nbsp;=&nbsp;mysql_connect($host,&nbsp;$user,&nbsp;$passwd);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mysql_select_db($dbname,&nbsp;$conn);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;conn&nbsp;=&nbsp;$conn;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;query($sql){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$res&nbsp;=&nbsp;mysql_query($sql,&nbsp;$this-&gt;conn);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$res;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;close(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mysql_close($this-&gt;conn);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><blockquote style="white-space: normal;"><p>MySQLi.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+namespace&nbsp;Database;
+class&nbsp;MySQLi&nbsp;implements&nbsp;IDatabase{
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;$conn;
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;connect($host,&nbsp;$user,&nbsp;$passwd,&nbsp;$dbname){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$conn&nbsp;=&nbsp;mysqli_connect($host,&nbsp;$user,&nbsp;$passwd,&nbsp;$dbname);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;conn&nbsp;=&nbsp;$conn;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;query($sql){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$res&nbsp;=&nbsp;mysqli_query($this-&gt;conn,&nbsp;$sql);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$res;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;close(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mysqli_close($this-&gt;conn);
+&nbsp;&nbsp;&nbsp;&nbsp;}</pre><blockquote style="white-space: normal;"><p>PDO.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+namespace&nbsp;Database;
+class&nbsp;PDO&nbsp;implements&nbsp;IDatabase{
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;$conn;
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;connect($host,&nbsp;$user,&nbsp;$passwd,&nbsp;$dbname){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;\PDO(&quot;mysql:host=$host;dbname=$dbname&quot;,&nbsp;$user,&nbsp;$passwd);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;conn&nbsp;=&nbsp;$conn;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;query($sql){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$this-&gt;conn-&gt;query($sql);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;close(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unset($this-&gt;conn);
+&nbsp;&nbsp;&nbsp;&nbsp;}</pre><p style="white-space: normal;">然后在应用中可以这样使用：</p><blockquote style="white-space: normal;"><p>index.php<br/></p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+$db&nbsp;=&nbsp;new&nbsp;Database\MySQL();
+$db-&gt;connect(&#39;localhost&#39;,&nbsp;&#39;root&#39;,&nbsp;&#39;root&#39;,&nbsp;&#39;test&#39;);
+$db-&gt;query(&#39;show&nbsp;database&#39;);
+$db-&gt;close();</pre><p style="white-space: normal;">或者实例化其他类型的数据库，只需要使用同一种标准。</p><p style="white-space: normal;"><strong><a name="2"></a>策略模式</strong></p><blockquote style="white-space: normal;"><p>1.策略模式，将一组特定行为和算法封装成类，以适应某些特定的上下文环境，这种模式就是策略模式</p><p>2.实际应用举例，假如一个电商网站系统，针对男性女性用户要各自跳转到不同的商品类目，并且所有广告位展示不同的广告</p><p>3.使用策略模式可以实现Ioc，依赖倒置、控制反转</p></blockquote><blockquote style="white-space: normal;"><p>UserStrategy.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+interface&nbsp;UserStrategy&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;showAd();
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;showCategory();
+}</pre><p style="white-space: normal;">UserStrategy.php文件定义了用户策略的接口，面对不同的用户将分别实现相应的内容。</p><blockquote style="white-space: normal;"><p>FemaleUserStrategy.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+class&nbsp;FemaleUserStrategy&nbsp;implements&nbsp;UserStrategy&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;showAd()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;&quot;2017新款女装&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;showCategory()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;&quot;女装&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><blockquote style="white-space: normal;"><p>MaleUserStrategy.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+class&nbsp;MaleUserStrategy&nbsp;implements&nbsp;UserStrategy&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;showAd()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;&quot;IPhone7&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;showCategory()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;&quot;电子产品&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><p style="white-space: normal;">在index.php中这样做就可以实现从硬编码到实现解耦，即不需要修改Page类的内容，只需要传递不同的参数。</p><blockquote style="white-space: normal;"><p>index.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+class&nbsp;Page&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;index()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;&quot;AD:&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;strategy-&gt;showAd();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;&quot;Category:&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;strategy-&gt;showCategory();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;setStrategy(UserStrategy&nbsp;$strategy)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;strategy&nbsp;=&nbsp;$strategy;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+$page&nbsp;=&nbsp;new&nbsp;Page();
+if&nbsp;(isset($_GET[&#39;female&#39;]))&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;$strategy&nbsp;=&nbsp;new&nbsp;FemaleUserStrategy();
+}&nbsp;else&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;$strategy&nbsp;=&nbsp;new&nbsp;MaleUserStrategy();
+}
+$page-&gt;setStrategy($strategy);
+$page-&gt;index();</pre><p><strong><a name="3"></a>数据对象映射模式</strong><br/></p><p style="white-space: normal;">数据对象映射模式，是将对象和数据存储映射起来，对一个对象的操作会映射为对数据存储的操作。</p><p style="white-space: normal;">在下面的代码中实现数据对象映射模式，我们将实现一个ORM类，将复杂的SQL语句映射成对象属性的操作。</p><blockquote style="white-space: normal;"><p>User.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+class&nbsp;User&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;$id;
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;$mobile;
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;$regtime;
+
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;$db;
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;__construct($id)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;数据库查询操作
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;db&nbsp;=&nbsp;new&nbsp;MySQLi();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;db-&gt;connect(&#39;localhost&#39;,&nbsp;&#39;root&#39;,&nbsp;&#39;root&#39;,&nbsp;&#39;test1&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$res&nbsp;=&nbsp;$this-&gt;db-&gt;query(&quot;select&nbsp;*&nbsp;from&nbsp;user&nbsp;where&nbsp;id={$this-&gt;id}&nbsp;limit&nbsp;1&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data&nbsp;=&nbsp;$res-&gt;fetch_assoc();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;id&nbsp;=&nbsp;$data[&#39;id&#39;];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;name&nbsp;=&nbsp;$data[&#39;name&#39;];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;mobile&nbsp;=&nbsp;$data[&#39;imobile];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;regtime&nbsp;=&nbsp;$data[regtimed&#39;];
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;__destruct()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;数据库写入操作
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;db-&gt;query(&quot;update&nbsp;user&nbsp;set&nbsp;name&nbsp;=&nbsp;&#39;{$this-&gt;name}&#39;,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mobile=&#39;{$this-&gt;mobile}&#39;,&nbsp;regtime=&#39;{$this-&gt;regtime}&#39;&nbsp;where&nbsp;id&nbsp;=&nbsp;{$this-&gt;id}&nbsp;limit&nbsp;1&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><p style="white-space: normal;">这样来使用：</p><blockquote style="white-space: normal;"><p>index.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+$user&nbsp;=&nbsp;new&nbsp;User(1);
+$user-&gt;mobile&nbsp;=&nbsp;&#39;18812345678&#39;;
+$user-&gt;name&nbsp;=&nbsp;&#39;test&#39;;
+$user-&gt;regtime&nbsp;=&nbsp;date(&#39;Y-m-d&nbsp;H:i:s&#39;);</pre><p style="white-space: normal;">下面结合使用数据对象映射模式，工厂模式，注册器模式：</p><blockquote style="white-space: normal;"><p>index.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+class&nbsp;Page&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;index()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$user&nbsp;=&nbsp;Factory::getUser(1);&nbsp;//&nbsp;工厂模式的实现
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$user-&gt;name&nbsp;=&nbsp;&#39;rango&#39;;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;test();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;test()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$user&nbsp;=&nbsp;Factory::getUser(1);&nbsp;//&nbsp;工厂模式的实现
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$user-&gt;mobile&nbsp;=&nbsp;&#39;18844448888&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+$page&nbsp;=&nbsp;new&nbsp;Page();</pre><blockquote style="white-space: normal;"><p>Factory.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+class&nbsp;Factory&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;function&nbsp;getUser($id)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;注册器模式的实现
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$key&nbsp;=&nbsp;&#39;user_&#39;.$id;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$user&nbsp;=&nbsp;Register::get($key);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!user)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$user&nbsp;=&nbsp;new&nbsp;User($id);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Register::set($key,$user);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$user;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><p style="white-space: normal;"><strong><a name="4"></a>观察者模式</strong></p><blockquote><p>1.观察者模式（Observer），当一个对象状态发生改变时，依赖它的对象全部会收到通知，并自动更新</p><p>2.场景：一个事件发生后，要执行一连串更新操作，传统的编程方式，就是在事件的代码之后直接加入处理逻辑。当更新的逻辑增多之后，代码会变得难以维护。这种方式是耦合的，侵入式的，增加新的逻辑需要修改事件主体的代码</p><p>3.观察者模式实现了低耦合，非侵入式的通知与更新机制</p></blockquote><blockquote style="white-space: normal;"><p>index.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+class&nbsp;Event&nbsp;extends&nbsp;EventGenerator&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;trigger()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;&quot;Event&lt;br&nbsp;/&gt;&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;notify();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+
+class&nbsp;Observer1&nbsp;implements&nbsp;Obsrver&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;update($event_info&nbsp;=&nbsp;null)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;&quot;逻辑1&lt;br&nbsp;/&gt;&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+
+class&nbsp;Observer2&nbsp;implements&nbsp;Obsrver&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;update($event_info&nbsp;=&nbsp;null)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;&quot;逻辑2&lt;br&nbsp;/&gt;&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+
+$event&nbsp;=&nbsp;new&nbsp;Event;
+$event-&gt;addObserver(new&nbsp;Observer1);&nbsp;//&nbsp;观察者模式的实现
+$event-&gt;addObserver(new&nbsp;Observer2);&nbsp;//&nbsp;观察者模式的实现
+$event-&gt;trigger();</pre><blockquote style="white-space: normal;"><p>EventGenerator.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+abstract&nbsp;class&nbsp;EventGenerator&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;$observers&nbsp;=&nbsp;array();
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;addObserver(Observer&nbsp;$observer)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;observers[]&nbsp;=&nbsp;$observer;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;notify()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach($this-&gt;observers&nbsp;as&nbsp;$ovserver)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$observer-&gt;update();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><blockquote style="white-space: normal;"><p>Observer.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+interface&nbsp;Observer&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;update($event_info&nbsp;=&nbsp;null);
+}</pre><p style="white-space: normal;"><strong><a name="5"></a>原型模式</strong></p><blockquote><p>1.与工厂模式作用类似，都是用来创建对象</p><p>2.与工厂模式的实现不同，原型模式是先创建好一个原型对象，然后通过clone原型对象来创建新的对象。这样就免去了类创建时重复的初始化操作</p><p>3.原型模式适用于大对象的创建。创建一个大对象需要很大的开销，如果每次new就会消耗很大，原型模式内存拷贝即可</p></blockquote><blockquote style="white-space: normal;"><p>Canvas.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+class&nbsp;Canvas&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;...
+}</pre><p style="white-space: normal;">index.php将实例化Canvas类以实现图像绘制，并使用关键字clone实现原型模式：<br/></p><blockquote style="white-space: normal;"><p>index.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+$prototype&nbsp;=&nbsp;new&nbsp;Canvas();
+$prototype-&gt;init();
+
+//&nbsp;原型模式的实现
+$canvas1&nbsp;=&nbsp;clone&nbsp;$prototype;
+$canvas2&nbsp;=&nbsp;clone&nbsp;$prototype;
+
+$canvas1-&gt;rect(1,2,3,4);
+$canvas1-&gt;draw();
+$canvas2-&gt;rect(5,6,7,8);
+$canvas2-&gt;draw();</pre><p style="white-space: normal;"><strong><a name="6"></a>装饰器模式</strong></p><blockquote><p>1.装饰器模式（Decorator），可以动态地添加修改类的功能</p><p>2.一个类提供了一项功能，如果要在修改并添加额外的功能，传统的编程模式，需要写一个子类继承它，并重新实现类的方法</p><p>3.使用装饰器模式，仅需要在运行时添加一个装饰器对象即可实现，可以实现最大的灵活性</p></blockquote><blockquote><p>DrawDecorator.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+interface&nbsp;DrawDecorator&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;beforeDraw();
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;afterDraw();
+}</pre><p style="white-space: normal;">DrawDecorator.php定义了装饰器的接口，将会在装饰器类中用到。</p><blockquote style="white-space: normal;"><p>Canvas.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+class&nbsp;Canvas&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;$decorator&nbsp;=&nbsp;array();
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;draw()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;装饰器模式实现点
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;beforeDraw();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;afterDraw();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;addDecorator(DrawDecorator&nbsp;$decorator)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;decorators[]&nbsp;=&nbsp;$decorator;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;beforeDraw()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach($this-&gt;decorators&nbsp;as&nbsp;$decorator)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$decorator-&gt;beforeDraw();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;fucntion&nbsp;afterDraw()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$decorators&nbsp;=&nbsp;array_reverse($this-&gt;decorators);&nbsp;//&nbsp;反转，后进先出
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach($decorators&nbsp;as&nbsp;$decorator)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$decorator-&gt;afterDraw();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><blockquote style="white-space: normal;"><p>ColorDrawDecorator.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+//&nbsp;第一个装饰器：颜色装饰器
+class&nbsp;ColorDrawDecortor&nbsp;implements&nbsp;DrawDecorator&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;beforeDraw()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;afterDraw()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><p style="white-space: normal;"><strong><a name="7"></a>迭代器模式</strong></p><blockquote><p>1.迭代器模式，在不需要了解内部实现的前提下，遍历一个聚合对象的内部元素</p><p>2.相比于传统的编程模式，迭代器模式可以隐藏遍历元素所需的操作</p></blockquote><blockquote style="white-space: normal;"><p>index.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+$users&nbsp;=&nbsp;new&nbsp;AllUser();
+foreach($users&nbsp;as&nbsp;$user)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;var_dump($user);
+}</pre><p style="white-space: normal;">迭代器的实现：</p><blockquote style="white-space: normal;"><p>AllUser.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+$canvas1&nbsp;=&nbsp;new&nbsp;Canvas();
+$canvas1-&gt;init();
+$canvas1-&gt;addDecorator(new&nbsp;ColorDrawDecortor());&nbsp;//&nbsp;添加装饰器
+$canvas1-&gt;draw();</pre><p style="white-space: normal;">这样来使用：</p><blockquote style="white-space: normal;"><p>index.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+class&nbsp;AllUser&nbsp;implements&nbsp;\Iterator&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;$ids;
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;$data&nbsp;=&nbsp;array();
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;$index;
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;__construct()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$db&nbsp;=&nbsp;Factory::getDatabase();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$result&nbsp;=&nbsp;$db-&gt;query(&#39;select&nbsp;id&nbsp;from&nbsp;user&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;ids&nbsp;=&nbsp;$result-&gt;fetch_all(MUSQLI_ASSOC);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;current()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$id&nbsp;=&nbsp;$this-&gt;ids[$this-&gt;index][&#39;id&#39;];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;Factory::getUser($id);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;next()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;index&nbsp;++;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;valid()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$this-&gt;id&nbsp;&lt;&nbsp;count($this-&gt;ids);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;rewind()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;index&nbsp;=&nbsp;0;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;key()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$this-&gt;index;
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+}</pre><p style="white-space: normal;"><strong><a name="8"></a>代理模式</strong></p><blockquote><p style="white-space: normal;">1.在客户端与实体之间建立一个代理对象（proxy），客户端对实体进行操作全部委派给代理对象，隐藏实体的具体实现细节</p><p>2.Proxy还可以与业务代码分离，部署到另外的服务器，业务代码中通过RPC来委派任务</p></blockquote><blockquote style="white-space: normal;"><p>index.php</p></blockquote><pre class="prism-highlight prism-language-php">$proxy&nbsp;=&nbsp;new&nbsp;Proxy();
+$proxy-&gt;getUserName();
+$proxy-&gt;setUserName($id,&nbsp;$proxy);</pre><blockquote style="white-space: normal;"><p>Proxy.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+class&nbsp;Procy&nbsp;implemets&nbsp;IUserProxy&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;getUserName($id)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$db&nbsp;=&nbsp;Factory::getDatabase(&#39;slave&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$db-&gt;query(&#39;select&nbsp;name&nbsp;from&nbsp;user&nbsp;where&nbsp;id&nbsp;=&nbsp;1&nbsp;limit&nbsp;1&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;setUserName($id,&nbsp;$name)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$db1&nbsp;=&nbsp;Factory::getDatabase(&#39;master&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$db-&gt;query(&#39;update&nbsp;user&nbsp;name&nbsp;=&nbsp;$name&nbsp;from&nbsp;user&nbsp;where&nbsp;id&nbsp;=&nbsp;1&nbsp;limit&nbsp;1&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><blockquote style="white-space: normal;"><p>IUserProxy.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+interface&nbsp;IUserName&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;getUserName($id);
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;setUserName($id,&nbsp;$name);
+}</pre>    
+</article>
+<nav class="article-pagination">
+    
+    <a href="index7df0.html?id=41" class="article-prev">前一篇: PHP面向对象编程的基本原则，以及三种基本设计模式</a>    <a href="indexa916.html?id=44" class="article-next">后一篇: JAVA中的几种设计模式</a></nav>
+
+
+
+<footer>
+<p class="copy">Copyright Hower'Blog Rights Reserved.&nbsp;&nbsp;. Powered By <a href="http://www.zblogcn.com/" rel="nofollow" target="_blank">Z-BlogPHP</a>. theme by <a href="http://www.laiweishang.com/" target="_blank">微商货源</a></p></footer>
+</body>
+<!-- Mirrored from oldblog.smallyu.net/?id=43 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2020 07:50:34 GMT -->
+</html>
+
+
+<!--5.56 ms , 9 query , 720kb memory , 0 error-->

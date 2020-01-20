@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from oldblog.smallyu.net/?id=41 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2020 07:50:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>PHP面向对象编程的基本原则，以及三种基本设计模式_未分类_smallyu</title>
+<meta name="keywords" content="PHP,设计模式,面向对象"/>
+<meta name="description" content="面向对象编程的基本原则1.单一职责：一个类，只需要做好一件事情2.开放封闭：一个类，应该是可扩展的，而不可修改的3.依赖倒置：一个类，不应该强依赖另一个类。每个类对于另外一个类都是可替换的4.配置化：尽可能地使用配置，而不是硬编码5.面向接口编程：只需要关心接口，不需要..."/>
+<meta name="author" content="smallyu">
+<link rel='prev' title='一个简单的验证码生成类（PHP）' href='indexab5e.html?id=40' />
+<link rel='next' title='PHP中多种常用的设计模式举例' href='index2580.html?id=43' />
+<link rel='canonical' href='index7df0.html?id=41' />
+<link rel='shortlink' href='index7df0.html?id=41' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <style type="text/css">
+    .home::before {
+    font-size: 90px;
+    font-family: 'efe-icons';
+    content: "";
+    display: block;
+    margin-bottom: 10px;
+}
+</style>
+<link rel="stylesheet" href="zb_users/theme/ydefe/style/page.min.css" type="text/css">
+<script src="zb_system/script/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="zb_system/script/zblogphp.js" type="text/javascript"></script>
+<script src="zb_system/script/c_html_js_add.js" type="text/javascript"></script>
+</head><body>
+
+<aside>
+	<a class="home" href="index.html" title="smallyu">
+	    <img src="zb_users/theme/ydefe/style/images/logo.png" /><br />
+        <abbr title="EFE">smallyu</abbr>
+    </a>
+  <nav> <a href="Hello%20World.html" target="_blank">Hello World</a> </nav>
+  <div class="sidebarleft-mb">
+    <ul class="product-overview-side-mb">
+      <li id="nvabar-item-index"><a href="index.html">首页</a></li>
+<li id="navbar-page-16"><a href="index2728.html?id=16">关于</a></li>
+    </ul>
+  </div>
+      
+<div class="sidebarleft widget_navbar">
+   
+  <div class="product-overview-side efe-desc widget_divNavBar_inner"><div class="sidebg"><li id="nvabar-item-index"><a href="index.html">首页</a></li>
+<li id="navbar-page-16"><a href="index2728.html?id=16">关于</a></li>
+</div></div>
+         
+ 
+</div>
+<div class="sidebarleft widget_archives">
+<h4>文章归档</h4>
+   
+         
+  <ul class="product-overview-side ">
+ <li><a href="indexb0b4.html?date=2017-8">2017年8月 (6)</a></li>
+<li><a href="indexcb7e.html?date=2017-7">2017年7月 (2)</a></li>
+<li><a href="index276d.html?date=2017-6">2017年6月 (3)</a></li>
+<li><a href="index5523.html?date=2017-5">2017年5月 (2)</a></li>
+<li><a href="indexb2e3.html?date=2017-4">2017年4月 (2)</a></li>
+<li><a href="index10ae.html?date=2017-3">2017年3月 (3)</a></li>
+<li><a href="index8cef.html?date=2017-2">2017年2月 (3)</a></li>
+<li><a href="index8bcc.html?date=2017-1">2017年1月 (4)</a></li>
+<li><a href="index9f2f.html?date=2016-12">2016年12月 (1)</a></li>
+<li><a href="index50f5.html?date=2016-11">2016年11月 (2)</a></li>
+<li><a href="indexf32d.html?date=2016-10">2016年10月 (3)</a></li>
+<li><a href="index91d7.html?date=2016-9">2016年9月 (1)</a></li>
+<li><a href="index917c.html?date=2016-8">2016年8月 (6)</a></li>
+<li><a href="index34d3.html?date=2016-7">2016年7月 (1)</a></li>
+<li><a href="indexe6af.html?date=2016-6">2016年6月 (4)</a></li>
+<li><a href="index1d06.html?date=2016-5">2016年5月 (4)</a></li>
+ </ul>
+ 
+</div>  </aside>
+
+
+<article>
+    
+        <h1><a href="index7df0.html?id=41">PHP面向对象编程的基本原则，以及三种基本设计模式</a></h1>
+    
+
+    <div class="article-meta">
+        <span class="article-author">
+        
+        <i class="fa fa-pencil"></i>
+        <a target="_blank" href="indexd381.html?auth=1" title="otakustay">smallyu</a>
+    
+</span>
+
+        <time><i class="fa fa-clock-o"></i> 2017-01-24</time>
+
+        
+        <span class="article-tags"><i class="fa fa-tag"></i> <a href="index85fc.html?tags=38" target="_blank">PHP</a>&nbsp;<a href="index222e.html?tags=34" target="_blank">设计模式</a>&nbsp;<a href="index6d71.html?tags=36" target="_blank">面向对象</a>&nbsp;</span>
+	    
+    
+    </div>
+        <p><strong>面向对象编程的基本原则</strong><br/></p><blockquote style="white-space: normal;"><p>1.单一职责：一个类，只需要做好一件事情</p><p>2.开放封闭：一个类，应该是可扩展的，而不可修改的</p><p>3.依赖倒置：一个类，不应该强依赖另一个类。每个类对于另外一个类都是可替换的</p><p>4.配置化：尽可能地使用配置，而不是硬编码</p><p>5.面向接口编程：只需要关心接口，不需要关心实现</p></blockquote><p style="white-space: normal;"><strong>PSR-0命名规范</strong></p><blockquote><p style="white-space: normal;">1. 命名空间必须与绝对路径一致</p><p style="white-space: normal;">2. 类名首字母必须大写<br/>3. 除入口文件外，其他“.php”必须只有一个类</p></blockquote><p style="white-space: normal;"><strong>开发符合PSR-0规范的基础框架</strong></p><blockquote><p style="white-space: normal;">1. 全部使用明明空间<br/>2. 所有PHP文件必须自动载入，不能有include/require<br/>3. 单一入口</p></blockquote><p><strong>类的自动载入</strong></p><blockquote><p>Test1.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+
+class&nbsp;Test1{
+
+&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;function&nbsp;test(){
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;__METHOD__;
+
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+}</pre><blockquote><p>Test2.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+
+class&nbsp;Test2{
+
+&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;function&nbsp;test(){
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;__METHOD__;
+
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+}</pre><blockquote><p>test.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+
+spl_autoload_register(&#39;autoload1&#39;);
+
+spl_autoload_register(&#39;autoload2&#39;);
+
+function&nbsp;autoload1($class){
+
+&nbsp;&nbsp;&nbsp;&nbsp;require&nbsp;__DIR__.&#39;/&#39;.$class.&#39;.php&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;
+}
+
+function&nbsp;autoload2($class){
+
+&nbsp;&nbsp;&nbsp;&nbsp;require&nbsp;__DIR__.&#39;/&#39;.$class.&#39;.php&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;
+}
+
+Test1::test();
+
+Test2::test();</pre><p>&nbsp;运行test.php会得到这样的结果：</p><pre class="prism-highlight prism-language-php">Test1::testTest2::test</pre><p>__autoload()函数只可以存在一个，如果重复定义会报致命错误，所以目前一般使用spl_autoload_regisiter()来实现类的自动加载。</p><p><strong>PHP链式调用的实现</strong></p><blockquote><p>Database.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+
+class&nbsp;Database{
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;where($where){
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;order($order){
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;limit($limit){
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+}</pre><p>如果Database.php是这样，那么在index.php中就需要这样来写以实现sql查询：</p><blockquote><p>index.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+
+$db=new&nbsp;Database();
+
+$db-&gt;where(&quot;id=2&quot;);
+
+$db-&gt;where(&quot;name=2&quot;);
+
+$db-&gt;order(&quot;id&nbsp;desc&quot;);
+
+$db-&gt;limit(10);</pre><p>&nbsp;要实现链式调用只需要这样做：</p><blockquote><p>Database.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+
+class&nbsp;Database{
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;where($where){
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$this;
+
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;order($order){
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$this;
+
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;limit($limit){
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$this;
+
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+}</pre><p>在每个方法的末尾加上&#39;return $this;&#39;，然后就可以：</p><blockquote><p>Data</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+
+$db-&gt;where(&quot;id=1&quot;)-&gt;where(&quot;name=2&quot;)-&gt;order(&quot;id&nbsp;desc&quot;)-&gt;limit(10);</pre><p>三种基础的设计模式包括工厂模式、单例模式和注册器模式。</p><p style="white-space: normal;"><strong>工厂模式</strong></p><blockquote style="white-space: normal;"><p>Factory.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+class&nbsp;Factory{
+&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;function&nbsp;createDatabase(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$db&nbsp;=&nbsp;new&nbsp;Database();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$db;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+$db&nbsp;=&nbsp;Factory::createDatabase();</pre><p style="white-space: normal;">工厂模式的作用在于不在类外实例化对象。</p><p style="white-space: normal;"><strong>单例模式</strong></p><blockquote style="white-space: normal;"><p>Database.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+class&nbsp;Database{
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;$db;
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;第一步
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;function&nbsp;__construct(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;private可以屏蔽外部new这个类
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;第二步
+&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;function&nbsp;getInstance(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(self::$db){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;self::$db;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::$db&nbsp;=&nbsp;new&nbsp;self();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;self::$db;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+$db&nbsp;=&nbsp;Database::getInstance();</pre><p style="white-space: normal;">单例模式用于数据库连接等只需要一个对象的场景，避免资源的浪费。</p><p style="white-space: normal;"><strong>注册器模式</strong></p><blockquote style="white-space: normal;"><p>Register.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+class&nbsp;Register{
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;static&nbsp;$objects;
+&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;function&nbsp;set($name,&nbsp;$object){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::objects[$name]&nbsp;=&nbsp;$object;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;function&nbsp;get($name){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;self::objects[$name];
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;function&nbsp;_unset($name){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unset(self::objects[$name]);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+Register::set(&#39;db1&#39;,$db);
+$db&nbsp;=&nbsp;Register::get(&#39;$db1&#39;);</pre><p style="white-space: normal;"><strong>适配器模式</strong></p><blockquote><p style="white-space: normal;">1.适配器模式，可以将截然不同的函数接口封装成统一的API</p><p style="white-space: normal;">2.实际应用举例，PHP的数据库操作有mysql,musqli,pdo三种，可以用适配器模式统一成一致。类似的场景还有cache适配器，将memcache，redis，file，apc等不同的缓存函数，统一成一致</p></blockquote><blockquote style="white-space: normal;"><p>Database.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+interdace&nbsp;IDatabase{
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;connect($host,&nbsp;$user,&nbsp;$passwd,&nbsp;$dbname);
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;query($sql);
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;close();
+}</pre><p style="white-space: normal;">在Database.php中定义了数据库操作的接口，接下来将MySQL、MySQLi、PDO三种数据库操作适配为接口中定义的方法。</p><blockquote style="white-space: normal;"><p>MySQL.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+namespace&nbsp;Database;
+class&nbsp;MySQL&nbsp;implements&nbsp;IDatabase{
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;$conn;
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;connect($host,&nbsp;$user,&nbsp;$passwd,&nbsp;$dbname){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$conn&nbsp;=&nbsp;mysql_connect($host,&nbsp;$user,&nbsp;$passwd);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mysql_select_db($dbname,&nbsp;$conn);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;conn&nbsp;=&nbsp;$conn;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;query($sql){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$res&nbsp;=&nbsp;mysql_query($sql,&nbsp;$this-&gt;conn);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$res;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;close(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mysql_close($this-&gt;conn);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><blockquote style="white-space: normal;"><p>MySQLi.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+namespace&nbsp;Database;
+class&nbsp;MySQLi&nbsp;implements&nbsp;IDatabase{
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;$conn;
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;connect($host,&nbsp;$user,&nbsp;$passwd,&nbsp;$dbname){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$conn&nbsp;=&nbsp;mysqli_connect($host,&nbsp;$user,&nbsp;$passwd,&nbsp;$dbname);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;conn&nbsp;=&nbsp;$conn;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;query($sql){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$res&nbsp;=&nbsp;mysqli_query($this-&gt;conn,&nbsp;$sql);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$res;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;close(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mysqli_close($this-&gt;conn);
+&nbsp;&nbsp;&nbsp;&nbsp;}</pre><blockquote style="white-space: normal;"><p>PDO.php</p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+namespace&nbsp;Database;
+class&nbsp;PDO&nbsp;implements&nbsp;IDatabase{
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;$conn;
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;connect($host,&nbsp;$user,&nbsp;$passwd,&nbsp;$dbname){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;\PDO(&quot;mysql:host=$host;dbname=$dbname&quot;,&nbsp;$user,&nbsp;$passwd);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;conn&nbsp;=&nbsp;$conn;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;query($sql){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$this-&gt;conn-&gt;query($sql);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;close(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unset($this-&gt;conn);
+&nbsp;&nbsp;&nbsp;&nbsp;}</pre><p style="white-space: normal;">然后在应用中可以这样使用：</p><blockquote style="white-space: normal;"><p>index.php<br/></p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+$db&nbsp;=&nbsp;new&nbsp;Database\MySQL();
+$db-&gt;connect(&#39;localhost&#39;,&nbsp;&#39;root&#39;,&nbsp;&#39;root&#39;,&nbsp;&#39;test&#39;);
+$db-&gt;query(&#39;show&nbsp;database&#39;);
+$db-&gt;close();</pre><p style="white-space: normal;">或者实例化其他类型的数据库，只需要使用同一种标准。</p>    
+</article>
+<nav class="article-pagination">
+    
+    <a href="indexab5e.html?id=40" class="article-prev">前一篇: 一个简单的验证码生成类（PHP）</a>    <a href="index2580.html?id=43" class="article-next">后一篇: PHP中多种常用的设计模式举例</a></nav>
+
+
+
+<footer>
+<p class="copy">Copyright Hower'Blog Rights Reserved.&nbsp;&nbsp;. Powered By <a href="http://www.zblogcn.com/" rel="nofollow" target="_blank">Z-BlogPHP</a>. theme by <a href="http://www.laiweishang.com/" target="_blank">微商货源</a></p></footer>
+</body>
+<!-- Mirrored from oldblog.smallyu.net/?id=41 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2020 07:50:34 GMT -->
+</html>
+
+
+<!--5.46 ms , 9 query , 706kb memory , 0 error-->

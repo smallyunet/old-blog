@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from oldblog.smallyu.net/?id=44 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2020 07:50:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>JAVA中的几种设计模式_未分类_smallyu</title>
+<meta name="keywords" content="JAVA,设计模式"/>
+<meta name="description" content="单例模式饿汉模式Singleton.javapackage&nbsp;com.imooc public&nbsp;class&nbsp;Singleton&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;1.将构造方法私有化，不允许外部..."/>
+<meta name="author" content="smallyu">
+<link rel='prev' title='PHP中多种常用的设计模式举例' href='index2580.html?id=43' />
+<link rel='next' title='PHP写简单爬虫抓取太工教务处通告中的，考试作弊学生名单' href='index98dc.html?id=45' />
+<link rel='canonical' href='indexa916.html?id=44' />
+<link rel='shortlink' href='indexa916.html?id=44' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <style type="text/css">
+    .home::before {
+    font-size: 90px;
+    font-family: 'efe-icons';
+    content: "";
+    display: block;
+    margin-bottom: 10px;
+}
+</style>
+<link rel="stylesheet" href="zb_users/theme/ydefe/style/page.min.css" type="text/css">
+<script src="zb_system/script/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="zb_system/script/zblogphp.js" type="text/javascript"></script>
+<script src="zb_system/script/c_html_js_add.js" type="text/javascript"></script>
+</head><body>
+
+<aside>
+	<a class="home" href="index.html" title="smallyu">
+	    <img src="zb_users/theme/ydefe/style/images/logo.png" /><br />
+        <abbr title="EFE">smallyu</abbr>
+    </a>
+  <nav> <a href="Hello%20World.html" target="_blank">Hello World</a> </nav>
+  <div class="sidebarleft-mb">
+    <ul class="product-overview-side-mb">
+      <li id="nvabar-item-index"><a href="index.html">首页</a></li>
+<li id="navbar-page-16"><a href="index2728.html?id=16">关于</a></li>
+    </ul>
+  </div>
+      
+<div class="sidebarleft widget_navbar">
+   
+  <div class="product-overview-side efe-desc widget_divNavBar_inner"><div class="sidebg"><li id="nvabar-item-index"><a href="index.html">首页</a></li>
+<li id="navbar-page-16"><a href="index2728.html?id=16">关于</a></li>
+</div></div>
+         
+ 
+</div>
+<div class="sidebarleft widget_archives">
+<h4>文章归档</h4>
+   
+         
+  <ul class="product-overview-side ">
+ <li><a href="indexb0b4.html?date=2017-8">2017年8月 (6)</a></li>
+<li><a href="indexcb7e.html?date=2017-7">2017年7月 (2)</a></li>
+<li><a href="index276d.html?date=2017-6">2017年6月 (3)</a></li>
+<li><a href="index5523.html?date=2017-5">2017年5月 (2)</a></li>
+<li><a href="indexb2e3.html?date=2017-4">2017年4月 (2)</a></li>
+<li><a href="index10ae.html?date=2017-3">2017年3月 (3)</a></li>
+<li><a href="index8cef.html?date=2017-2">2017年2月 (3)</a></li>
+<li><a href="index8bcc.html?date=2017-1">2017年1月 (4)</a></li>
+<li><a href="index9f2f.html?date=2016-12">2016年12月 (1)</a></li>
+<li><a href="index50f5.html?date=2016-11">2016年11月 (2)</a></li>
+<li><a href="indexf32d.html?date=2016-10">2016年10月 (3)</a></li>
+<li><a href="index91d7.html?date=2016-9">2016年9月 (1)</a></li>
+<li><a href="index917c.html?date=2016-8">2016年8月 (6)</a></li>
+<li><a href="index34d3.html?date=2016-7">2016年7月 (1)</a></li>
+<li><a href="indexe6af.html?date=2016-6">2016年6月 (4)</a></li>
+<li><a href="index1d06.html?date=2016-5">2016年5月 (4)</a></li>
+ </ul>
+ 
+</div>  </aside>
+
+
+<article>
+    
+        <h1><a href="indexa916.html?id=44">JAVA中的几种设计模式</a></h1>
+    
+
+    <div class="article-meta">
+        <span class="article-author">
+        
+        <i class="fa fa-pencil"></i>
+        <a target="_blank" href="indexd381.html?auth=1" title="otakustay">smallyu</a>
+    
+</span>
+
+        <time><i class="fa fa-clock-o"></i> 2017-02-11</time>
+
+        
+        <span class="article-tags"><i class="fa fa-tag"></i> <a href="indexb0f4.html?tags=37" target="_blank">JAVA</a>&nbsp;<a href="index222e.html?tags=34" target="_blank">设计模式</a>&nbsp;</span>
+	    
+    
+    </div>
+        <p><span style="font-size: 16px;"><strong>单例模式</strong></span></p><p>饿汉模式</p><blockquote><p>Singleton.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc
+public&nbsp;class&nbsp;Singleton&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;1.将构造方法私有化，不允许外部直接创建对象
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;Singleton()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;2.创建类的唯一示例,使用private&nbsp;static修饰
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;static&nbsp;Singleton&nbsp;instance&nbsp;=&nbsp;new&nbsp;Singleton();
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;3.提供一个用于获取示例的方法
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;Singleton&nbsp;getInstance()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;instance;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><p>饿汉模式指第二步时，加载类的同时生成了实例化的对象。特点是加载类时比较慢，但运行时获取对象的速度比较快，线程安全。</p><blockquote><p>Test.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc;
+public&nbsp;class&nbsp;Test&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;static&nbsp;void&nbsp;main(String[]&nbsp;args)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Singleton&nbsp;s1&nbsp;=&nbsp;Singleton.getInstance;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Singleton&nbsp;s2&nbsp;=&nbsp;Singleton.getInstance;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><p>懒汉模式</p><blockquote><p>Singleton2.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc
+
+public&nbsp;class&nbsp;Singleton2&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;1.将构造方法私有化，不允许外部直接创建对象
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;Singleton2()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;2.创建类的唯一示例,使用private&nbsp;static修饰
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;static&nbsp;Singleton2&nbsp;instance;
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;3.提供一个用于获取示例的方法
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;Singleton2&nbsp;getInstance()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(install==null){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instance&nbsp;=&nbsp;new&nbsp;Singleton2();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;instance;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><p>懒汉模式指第二步没有实例化对象，而是在第三步，当调用方法，才会判断并进行实例化，特点是加载类时比较快，但运行时获取对象的速度比较慢，线程不安全。</p><p><span style="font-size: 16px;"><strong>模板方法模式</strong></span><br/></p><p>应用场景为模拟制备饮料。制备饮料一共有四个步骤，即为RefreshBeverage.java中注释中写到的四步。泡制饮料和加入调味料在抽象基类中没有提供具体的实现方法，只是定义接口方法，在子类中应用模板方法模式分别实现具体内容。<strong><br/></strong></p><p>第四步加入调味料用到了钩子方法，可以提高代码灵活性，判断子类要泡制的饮料中要不要加入调味料。</p><blockquote><p>RefreshBeverage.java<strong><br/></strong></p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.pattern.template;
+
+/**
+&nbsp;*&nbsp;抽象基类，为所有子类提供一个算法框架
+&nbsp;*&nbsp;
+&nbsp;*&nbsp;提神饮料
+&nbsp;*/
+public&nbsp;abstract&nbsp;class&nbsp;RefreshBeverage&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;制备饮料的模板方法
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;封装了所有子类共同遵循的算法框架
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;final&nbsp;void&nbsp;prepareBeverageTemplate()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;步骤1&nbsp;将水煮沸
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boilWater();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;步骤2&nbsp;泡制饮料
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;brew();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;步骤3&nbsp;将饮料倒入杯中
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pourInCup();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(isCustomerWantsCondiments()){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;步骤4&nbsp;加入调味料
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addCondiments();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Hook，钩子函数，提供一个默认或空的实现
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;具体的子类可以自行决定是否挂钩或者如何挂钩
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;询问用户是否加入调料
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;boolean&nbsp;isCustomerWantsCondiments()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;true;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;基本方法，将水煮沸
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;void&nbsp;boilWater()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;将水煮沸&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;抽象的基本方法，泡制饮料
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;abstract&nbsp;void&nbsp;brew();
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;基本方法，将饮料倒入杯中
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;void&nbsp;pourInCup()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;将饮料倒入杯中&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;抽象的基本方法，加入调味料
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;abstract&nbsp;void&nbsp;addCondiments();
+}</pre><blockquote><p>Coffee.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.pattern.template;
+
+/**
+&nbsp;*&nbsp;具体子类，提供了咖啡制备的具体实现
+&nbsp;*/
+public&nbsp;class&nbsp;Coffee&nbsp;extends&nbsp;RefreshBeverage&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;void&nbsp;brew()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;用沸水冲泡咖啡&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;void&nbsp;addCondiments()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;加入糖和牛奶&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><blockquote><p>Tea.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.pattern.template;
+
+/**
+&nbsp;*&nbsp;具体子类，提供了制备茶的具体实现
+&nbsp;*/
+public&nbsp;class&nbsp;Tea&nbsp;extends&nbsp;RefreshBeverage&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;void&nbsp;brew()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;用80度的热水浸泡茶叶5分钟&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;void&nbsp;addCondiments()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;加入柠檬&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;子类通过覆盖的方式选择挂载钩子函数
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;boolean&nbsp;isCustomerWantsCondiments(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+}</pre><blockquote><p>RefreshBeverageTest.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.pattern.template;
+
+public&nbsp;class&nbsp;RefreshBeverageTest&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String[]&nbsp;args)&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;制备咖啡...&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RefreshBeverage&nbsp;b1&nbsp;=&nbsp;new&nbsp;Coffee();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b1.prepareBeverageTemplate();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;咖啡好了！&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;**********************************&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;制备茶...&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RefreshBeverage&nbsp;b2&nbsp;=&nbsp;new&nbsp;Tea();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b2.prepareBeverageTemplate();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;茶好了！&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+}</pre><p>运行结果：<br/></p><pre class="prism-highlight prism-language-java">制备咖啡...
+将水煮沸
+用沸水冲泡咖啡
+将饮料倒入杯中
+加入糖和牛奶
+咖啡好了！
+**********************************
+制备茶...
+将水煮沸
+用80度的热水浸泡茶叶5分钟
+将饮料倒入杯中
+茶好了！</pre><p>其中用到的钩子方法会使子类更加灵活。</p><p><span style="font-size: 16px;"><strong>适配器模式</strong></span></p><p>应用场景为模拟二相转三相插座适配器，NoteBook需要三相电流供电，但只有二相电流插座，TwoPlugAdapter.java中适配了二相电流。</p><blockquote><p>ThreePlugIf.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.apttern.adapter;
+/**
+&nbsp;*&nbsp;三相插座接口
+&nbsp;*/
+public&nbsp;interface&nbsp;ThreePlugIf&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;使用三相电流供电
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;powerWithThree(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><blockquote><p>GBTwoPlug.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.apttern.adapter;
+
+public&nbsp;class&nbsp;GBTwoPlug&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;使用二相电流供电
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;powerWithTwo(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;使用二相电流供电&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><blockquote><p>NoteBook.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.apttern.adapter;
+
+public&nbsp;class&nbsp;NoteBook&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;ThreePlugIf&nbsp;plug;
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;NoteBook(ThreePlugIf&nbsp;plug){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.plug&nbsp;=&nbsp;plug;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;使用插座充电
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;change(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;plug.powerWithThree();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String[]&nbsp;args){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GBTwoPlug&nbsp;two&nbsp;=&nbsp;new&nbsp;GBTwoPlug();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ThreePlugIf&nbsp;three&nbsp;=&nbsp;new&nbsp;TwoPlugAdapter(two);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NoteBook&nbsp;nb&nbsp;=&nbsp;new&nbsp;NoteBook(three);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nb.change();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><blockquote><p>TwoPlugAdapter.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.apttern.adapter;
+
+/**
+&nbsp;*&nbsp;二相转三相的插座适配器
+&nbsp;*/
+public&nbsp;class&nbsp;TwoPlugAdapter&nbsp;implements&nbsp;ThreePlugIf&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;GBTwoPlug&nbsp;plug;
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;TwoPlugAdapter(GBTwoPlug&nbsp;plug){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.plug&nbsp;=&nbsp;plug;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;powerWithThree()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;通过转化&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;plug.powerWithTwo();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+}</pre><p>运行结果：<br/></p><pre class="prism-highlight prism-language-java">通过转化
+使用二相电流供电</pre><p><span style="font-size: 16px;"><strong>策略模式</strong></span></p><p>策略模式将可变部分从程序中抽象分离成算法接口，在该接口下分别封装一系列算法实现</p><p>What is composition ?</p><p>在类中增加一个私有域，引用另一个已有的类的实例，通过调用引用实例的方法从而获得新的功能，这种设计被称作组合（复合）。</p><p>策略模式的优点：</p><blockquote><p>1.使用了组合，是架构更加灵活</p><p>2.富有弹性，可以较好的应对变化（开——闭原则）</p><p>3.更好的代码复用性（相对于继承）</p><p>4.消除大量的条件语句</p></blockquote><p>策略模式的缺点：</p><blockquote><p>1.客户代码需要了解每个策略的细节</p><p>2.增加了对象的数目</p></blockquote><p>策略模式的应用场景：</p><blockquote><p>1.许多相关的类仅仅是行为差异</p><p>2.运行时选取不同的算法变体</p><p>3.通过条件语句在多个分支中选取一</p></blockquote><p>代码的应用场景模拟了鸭子的生产过程，鸭子一共有三个行为：展示、鸣叫、飞行。不同的鸭子有不同的飞行行为，使用到了策略模式。<br/></p><blockquote><p>Duck.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.pattern.strategy;
+
+/**
+&nbsp;*&nbsp;超类，所有的鸭子都要继承此类
+&nbsp;*抽象了鸭子的行为：显示和鸣叫
+&nbsp;*/
+public&nbsp;abstract&nbsp;class&nbsp;Duck&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;鸭子发出叫声
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;通用行为，由超类实现
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;quack(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;嘎嘎嘎&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;显示鸭子的外观
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;鸭子的外观不相同，声明为abstract，由子类实现
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;abstract&nbsp;void&nbsp;display();
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;FlyingStrategy&nbsp;flyingStrategy;
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;setFlyingStrategy(FlyingStrategy&nbsp;flyingStrategy){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.flyingStrategy&nbsp;=&nbsp;flyingStrategy;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;fly(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flyingStrategy.performFly();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><blockquote><p>FlyingStrategy.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.pattern.strategy;
+
+/**
+&nbsp;*&nbsp;策略接口，实现鸭子的飞行行为
+&nbsp;*/
+public&nbsp;interface&nbsp;FlyingStrategy&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;void&nbsp;performFly();
+}</pre><blockquote><p>MallardDuck.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.pattern.strategy;
+
+import&nbsp;com.imooc.pattern.strategy.impl.FlyWithWin;
+
+//&nbsp;绿脖鸭
+public&nbsp;class&nbsp;MallardDuck&nbsp;extends&nbsp;Duck&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;MallardDuck(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super.setFlyingStrategy(new&nbsp;FlyWithWin());
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;@Override
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;display()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;TODO&nbsp;Auto-generated&nbsp;method&nbsp;stub
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;我的脖子是绿色的&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+}</pre><blockquote><p>RedheadDuck.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.pattern.strategy;
+
+import&nbsp;com.imooc.pattern.strategy.impl.FlyWithWin;
+
+//&nbsp;红头鸭
+public&nbsp;class&nbsp;RedheadDuck&nbsp;extends&nbsp;Duck&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;RedheadDuck(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super.setFlyingStrategy(new&nbsp;FlyWithWin());
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;display()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;我的头是红色的&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+}</pre><blockquote><p>RubberDuck.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.pattern.strategy;
+
+import&nbsp;com.imooc.pattern.strategy.impl.FlyNoWay;
+
+//&nbsp;橡胶鸭
+public&nbsp;class&nbsp;RubberDuck&nbsp;extends&nbsp;Duck&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;RubberDuck(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super.setFlyingStrategy(new&nbsp;FlyNoWay());
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;@Override
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;display()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;TODO&nbsp;Auto-generated&nbsp;method&nbsp;stub
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;我全身发黄，嘴巴很红&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;quack(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;叫声稍有不同，复写了父类方法
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;嘎~嘎~嘎~&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><p>不同的飞行策略类：</p><blockquote><p>FlyWithWin.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.pattern.strategy.impl;
+
+import&nbsp;com.imooc.pattern.strategy.FlyingStrategy;
+
+public&nbsp;class&nbsp;FlyWithWin&nbsp;implements&nbsp;FlyingStrategy&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Override
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;performFly()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;TODO&nbsp;Auto-generated&nbsp;method&nbsp;stub
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;振翅高飞&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+}</pre><blockquote><p>FlyNoWay.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.pattern.strategy.impl;
+
+import&nbsp;com.imooc.pattern.strategy.FlyingStrategy;
+
+public&nbsp;class&nbsp;FlyNoWay&nbsp;implements&nbsp;FlyingStrategy&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Override
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;performFly()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;TODO&nbsp;Auto-generated&nbsp;method&nbsp;stub
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;我不会飞行！&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+}</pre><p>最后测试生产出的鸭子：<br/></p><blockquote><p>DuckTest.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.pattern.strategy;
+
+public&nbsp;class&nbsp;DuckTest&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String[]&nbsp;args){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;测试鸭子程序&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Duck&nbsp;duck&nbsp;=&nbsp;null;
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;duck&nbsp;=&nbsp;new&nbsp;MallardDuck();
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;duck&nbsp;=&nbsp;new&nbsp;RedheadDuck();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;duck&nbsp;=&nbsp;new&nbsp;RubberDuck();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;duck.display();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;duck.quack();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;duck.fly();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;测试完毕&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><p>运行结果:</p><pre class="prism-highlight prism-language-java">测试鸭子程序
+我全身发黄，嘴巴很红
+嘎~嘎~嘎~
+我不会飞行！
+测试完毕</pre><p>这样就用JAVA实现了策略模式。</p><p><span style="font-size: 16px;"><strong>代理模式</strong></span></p><blockquote><p>远程代理：为不同地理的对象提供局域网代表对象</p><p>虚拟代理：根据需要将资源消耗很大的对象进行延迟，真正需要的时候进行创建</p><p>保护代理：控制用户的访问权限</p><p>智能引用代理：提供对目标对象额外服务</p></blockquote><p><span style="font-size: 14px;">应用场景模拟了汽车行驶时间的显示和日志记录两个功能。</span><br/></p><blockquote><p><span style="font-size: 14px;">Moveable.java</span></p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.proxy;
+
+//&nbsp;接口文件
+public&nbsp;interface&nbsp;Moveable&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;void&nbsp;move();
+}</pre><blockquote><p><span style="font-size: 14px;"></span>Car.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.proxy;
+
+import&nbsp;java.util.Random;
+
+public&nbsp;class&nbsp;Car&nbsp;implements&nbsp;Moveable&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;move()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;实现开车
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thread.sleep(new&nbsp;Random().nextInt(1000));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;汽车行驶中……&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}catch(InterruptedException&nbsp;e){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;
+}</pre><blockquote><p>Car2.java<span style="font-size: 14px;"></span><br/></p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.proxy;
+
+//&nbsp;实现汽车行驶时间
+public&nbsp;class&nbsp;Car2&nbsp;extends&nbsp;Car&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;move(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long&nbsp;strattime&nbsp;=&nbsp;System.currentTimeMillis();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;汽车开始行驶……&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super.move();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long&nbsp;endtime&nbsp;=&nbsp;System.currentTimeMillis();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;汽车结束行驶中……&nbsp;汽车行驶时间：&quot;+(endtime-strattime)+&quot;毫秒！&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><blockquote><p><span style="font-size: 14px;"></span></p><p>Car3.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.proxy;
+
+//&nbsp;时间代理实现汽车行驶时间
+public&nbsp;class&nbsp;Car3&nbsp;implements&nbsp;Moveable&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;Car3(Car&nbsp;car)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.car&nbsp;=&nbsp;car;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;Car&nbsp;car;
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;move(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long&nbsp;strattime&nbsp;=&nbsp;System.currentTimeMillis();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;汽车开始行驶……&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;car.move();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long&nbsp;endtime&nbsp;=&nbsp;System.currentTimeMillis();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;汽车结束行驶中……&nbsp;汽车行驶时间：&quot;+(endtime-strattime)+&quot;毫秒！&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+}</pre><blockquote><p>Car4.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.proxy;
+
+//&nbsp;增加log记录代理
+public&nbsp;class&nbsp;Car4&nbsp;implements&nbsp;Moveable&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;Car4(Moveable&nbsp;m)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.m&nbsp;=&nbsp;m;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;Moveable&nbsp;m;
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;move(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;日志开始……&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m.move();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;日志结束……&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+}</pre><blockquote><p>Client.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.proxy;
+
+/**
+&nbsp;*&nbsp;测试类
+&nbsp;*/
+public&nbsp;class&nbsp;Client&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String[]&nbsp;args){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;直接
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Car&nbsp;car&nbsp;=&nbsp;new&nbsp;Car();
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;car.move();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;使用集成方法
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Moveable&nbsp;m&nbsp;=&nbsp;new&nbsp;Car2();
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m.move();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;使用聚合方法
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Car&nbsp;car&nbsp;=&nbsp;new&nbsp;Car();
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Moveable&nbsp;m&nbsp;=&nbsp;new&nbsp;Car3(car);
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m.move();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;增加日志记录
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Car&nbsp;car&nbsp;=&nbsp;new&nbsp;Car();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Car3&nbsp;ctp&nbsp;=&nbsp;new&nbsp;Car3(car);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Car4&nbsp;clp&nbsp;=&nbsp;new&nbsp;Car4(ctp);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clp.move();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><p>运行结果像这样：<br/></p><pre class="prism-highlight prism-language-java">日志开始……
+汽车开始行驶……
+汽车行驶中……
+汽车结束行驶中……&nbsp;汽车行驶时间：497毫秒！
+日志结束……</pre><p>下面使用动态代理来是代码更灵活（<strong>有错误</strong>）。</p><blockquote><p>TimeHandler.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.jdkproxy;
+
+import&nbsp;java.lang.reflect.InvocationHandler;
+import&nbsp;java.lang.reflect.Method;
+
+import&nbsp;com.imooc.proxy.Car;
+
+/**
+&nbsp;*&nbsp;JDK动态代理
+&nbsp;*&nbsp;只能代理实现了接口的类
+&nbsp;*&nbsp;没有实现接口的类不能实现JDK的动态代理
+&nbsp;*/
+public&nbsp;class&nbsp;TimeHandler&nbsp;implements&nbsp;InvocationHandler&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;TimeHandler(Object&nbsp;target){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.target&nbsp;=&nbsp;target;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;Object&nbsp;target;
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;参数
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;proxy&nbsp;被代理对象
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;method&nbsp;被代理的方法
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;args&nbsp;方法的参数
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;返回值
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Object&nbsp;方法的返回值
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;@Override
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;Object&nbsp;invoke(Object&nbsp;arg0,&nbsp;Method&nbsp;arg1,&nbsp;Object[]&nbsp;arg2)&nbsp;throws&nbsp;Throwable&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;TODO&nbsp;Auto-generated&nbsp;method&nbsp;stub
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long&nbsp;strattime&nbsp;=&nbsp;System.currentTimeMillis();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;汽车开始行驶……&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;method.invoke(target);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long&nbsp;endtime&nbsp;=&nbsp;System.currentTimeMillis();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;汽车结束行驶中……&nbsp;汽车行驶时间：&quot;+(endtime-strattime)+&quot;毫秒！&quot;);
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;null;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+}</pre><blockquote><p>Test.java</p></blockquote><pre class="prism-highlight prism-language-java">package&nbsp;com.imooc.jdkproxy;
+
+import&nbsp;java.lang.reflect.InvocationHandler;
+import&nbsp;java.lang.reflect.Proxy;
+
+import&nbsp;com.imooc.proxy.Car;
+import&nbsp;com.imooc.proxy.Moveable;
+
+/**
+&nbsp;*&nbsp;JDK动态代理测试类
+&nbsp;*/
+public&nbsp;class&nbsp;Test&nbsp;{
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String[]&nbsp;args){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Car&nbsp;car&nbsp;=&nbsp;new&nbsp;Car();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InvocationHandler&nbsp;h&nbsp;=&nbsp;new&nbsp;TimeHandler(car);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class&lt;?&gt;&nbsp;cls&nbsp;=&nbsp;car.getClass();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;loader&nbsp;类加载器
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;interface&nbsp;实现节后
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;h&nbsp;InvocationHander
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Moveable&nbsp;m&nbsp;=&nbsp;(Moveable)Proxy.newProxyInstance(cls.getClassLoader(),&nbsp;cls.getInterfaces(),&nbsp;h);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m.move();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><p><span style="font-size: 14px;">etc.<br/></span></p>    
+</article>
+<nav class="article-pagination">
+    
+    <a href="index2580.html?id=43" class="article-prev">前一篇: PHP中多种常用的设计模式举例</a>    <a href="index98dc.html?id=45" class="article-next">后一篇: PHP写简单爬虫抓取太工教务处通告中的，考试作弊学生名单</a></nav>
+
+
+
+<footer>
+<p class="copy">Copyright Hower'Blog Rights Reserved.&nbsp;&nbsp;. Powered By <a href="http://www.zblogcn.com/" rel="nofollow" target="_blank">Z-BlogPHP</a>. theme by <a href="http://www.laiweishang.com/" target="_blank">微商货源</a></p></footer>
+</body>
+<!-- Mirrored from oldblog.smallyu.net/?id=44 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2020 07:50:34 GMT -->
+</html>
+
+
+<!--5.58 ms , 9 query , 734kb memory , 0 error-->

@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from oldblog.smallyu.net/?id=47 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2020 07:50:25 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>一个简单的对于Mysql的PDO操作类（PHP）_未分类_smallyu</title>
+<meta name="keywords" content="PHP,PDO"/>
+<meta name="description" content="类结构本身稍微混乱，方法没有规章，这是缺点。PDOMysql.class.php&lt;?php define(&quot;DB_HOST&quot;,&nbsp;&quot;localhost&quot;); define(&quot;DB_USER&quot..."/>
+<meta name="author" content="smallyu">
+<link rel='prev' title='PHP-GTK初体验：用最简单的方式运行环境，并实现Hello World' href='index084d.html?id=46' />
+<link rel='next' title='站在巨人的肩膀上写代码——Spl中的三种数据结构解析' href='index4944.html?id=48' />
+<link rel='canonical' href='indexbb33.html?id=47' />
+<link rel='shortlink' href='indexbb33.html?id=47' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <style type="text/css">
+    .home::before {
+    font-size: 90px;
+    font-family: 'efe-icons';
+    content: "";
+    display: block;
+    margin-bottom: 10px;
+}
+</style>
+<link rel="stylesheet" href="zb_users/theme/ydefe/style/page.min.css" type="text/css">
+<script src="zb_system/script/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="zb_system/script/zblogphp.js" type="text/javascript"></script>
+<script src="zb_system/script/c_html_js_add.js" type="text/javascript"></script>
+</head><body>
+
+<aside>
+	<a class="home" href="index.html" title="smallyu">
+	    <img src="zb_users/theme/ydefe/style/images/logo.png" /><br />
+        <abbr title="EFE">smallyu</abbr>
+    </a>
+  <nav> <a href="Hello%20World.html" target="_blank">Hello World</a> </nav>
+  <div class="sidebarleft-mb">
+    <ul class="product-overview-side-mb">
+      <li id="nvabar-item-index"><a href="index.html">首页</a></li>
+<li id="navbar-page-16"><a href="index2728.html?id=16">关于</a></li>
+    </ul>
+  </div>
+      
+<div class="sidebarleft widget_navbar">
+   
+  <div class="product-overview-side efe-desc widget_divNavBar_inner"><div class="sidebg"><li id="nvabar-item-index"><a href="index.html">首页</a></li>
+<li id="navbar-page-16"><a href="index2728.html?id=16">关于</a></li>
+</div></div>
+         
+ 
+</div>
+<div class="sidebarleft widget_archives">
+<h4>文章归档</h4>
+   
+         
+  <ul class="product-overview-side ">
+ <li><a href="indexb0b4.html?date=2017-8">2017年8月 (6)</a></li>
+<li><a href="indexcb7e.html?date=2017-7">2017年7月 (2)</a></li>
+<li><a href="index276d.html?date=2017-6">2017年6月 (3)</a></li>
+<li><a href="index5523.html?date=2017-5">2017年5月 (2)</a></li>
+<li><a href="indexb2e3.html?date=2017-4">2017年4月 (2)</a></li>
+<li><a href="index10ae.html?date=2017-3">2017年3月 (3)</a></li>
+<li><a href="index8cef.html?date=2017-2">2017年2月 (3)</a></li>
+<li><a href="index8bcc.html?date=2017-1">2017年1月 (4)</a></li>
+<li><a href="index9f2f.html?date=2016-12">2016年12月 (1)</a></li>
+<li><a href="index50f5.html?date=2016-11">2016年11月 (2)</a></li>
+<li><a href="indexf32d.html?date=2016-10">2016年10月 (3)</a></li>
+<li><a href="index91d7.html?date=2016-9">2016年9月 (1)</a></li>
+<li><a href="index917c.html?date=2016-8">2016年8月 (6)</a></li>
+<li><a href="index34d3.html?date=2016-7">2016年7月 (1)</a></li>
+<li><a href="indexe6af.html?date=2016-6">2016年6月 (4)</a></li>
+<li><a href="index1d06.html?date=2016-5">2016年5月 (4)</a></li>
+ </ul>
+ 
+</div>  </aside>
+
+
+<article>
+    
+        <h1><a href="indexbb33.html?id=47">一个简单的对于Mysql的PDO操作类（PHP）</a></h1>
+    
+
+    <div class="article-meta">
+        <span class="article-author">
+        
+        <i class="fa fa-pencil"></i>
+        <a target="_blank" href="indexd381.html?auth=1" title="otakustay">smallyu</a>
+    
+</span>
+
+        <time><i class="fa fa-clock-o"></i> 2017-03-03</time>
+
+        
+        <span class="article-tags"><i class="fa fa-tag"></i> <a href="index85fc.html?tags=38" target="_blank">PHP</a>&nbsp;<a href="index2bba.html?tags=42" target="_blank">PDO</a>&nbsp;</span>
+	    
+    
+    </div>
+        <p>类结构本身稍微混乱，方法没有规章，这是缺点。<br/></p><blockquote><p>PDOMysql.class.php<br/></p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+
+define(&quot;DB_HOST&quot;,&nbsp;&quot;localhost&quot;);
+define(&quot;DB_USER&quot;,&nbsp;&#39;root&#39;);
+define(&quot;DB_PWD&quot;,&nbsp;&#39;root&#39;);
+define(&quot;DB_NAME&quot;,&nbsp;&#39;minyy&#39;);
+define(&quot;DB_PORT&quot;,&nbsp;&#39;3306&#39;);
+define(&quot;DB_TYPE&quot;,&nbsp;&#39;mysql&#39;);
+define(&quot;DB_CHARSET&quot;,&nbsp;&#39;utf8&#39;);
+
+class&nbsp;PDOMySQL{
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;$config&nbsp;=&nbsp;array();&nbsp;&nbsp;//&nbsp;设置连接参数&nbsp;配置信息
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;$link&nbsp;=&nbsp;null;&nbsp;//&nbsp;保存连接标志符
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;$pconnect&nbsp;=&nbsp;false;&nbsp;&nbsp;&nbsp;//&nbsp;是否开启长连接
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;$dbVersion&nbsp;=&nbsp;null;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;保存数据库版本
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;$connected&nbsp;=&nbsp;false;&nbsp;&nbsp;&nbsp;//&nbsp;是否连接成功
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;$PDOStatement&nbsp;=&nbsp;null;&nbsp;//&nbsp;保存PDOStatement对象
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;$queryStr&nbsp;=&nbsp;null;&nbsp;//&nbsp;保存最后执行的操作
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;$error&nbsp;=&nbsp;null;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;报错错误信息
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;$lastInsertId&nbsp;=&nbsp;0;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;保存上一步插入操作产生AUTO_INSREMENT
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;$numRows&nbsp;=&nbsp;0;&nbsp;//&nbsp;上一步操作产生受影响的记录条数
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;构造函数实现连接数据库
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;array&nbsp;$dbConfig&nbsp;配置项参数
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;__construct($dbConfig&nbsp;=&nbsp;&#39;&#39;){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!class_exists(&quot;PDO&quot;)){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::throw_exception(&#39;不支持PDO，请先开启&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!$dbConfig&nbsp;||&nbsp;!is_array($dbConfig)){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$dbConfig&nbsp;=&nbsp;array(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;hostname&#39;&nbsp;=&gt;&nbsp;DB_HOST,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;username&#39;&nbsp;=&gt;&nbsp;DB_USER,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;password&#39;&nbsp;=&gt;&nbsp;DB_PWD,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;database&#39;&nbsp;=&gt;&nbsp;DB_NAME,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;hostport&#39;&nbsp;=&gt;&nbsp;DB_PORT,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;dbms&#39;&nbsp;=&gt;&nbsp;DB_TYPE,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;dsn&#39;&nbsp;=&gt;&nbsp;DB_TYPE.&quot;:host=&quot;.DB_HOST.&quot;;dbname=&quot;.DB_NAME,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(empty($dbConfig[&#39;hostname&#39;]))&nbsp;self::throw_exception(&#39;没有定义数据库配置&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::$config&nbsp;=&nbsp;$dbConfig;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(empty(self::$config[&#39;params&#39;]))&nbsp;self::$config[&#39;params&#39;]&nbsp;=&nbsp;array();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!isset(self::$link)){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$configs&nbsp;=&nbsp;self::$config;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(self::$pconnect){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;开启长连接，添加到配置数组中
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$configs[&#39;params&#39;][constant(&quot;PDO::ATTR_PERSISTENT&quot;)]&nbsp;=&nbsp;true;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::$link&nbsp;=&nbsp;new&nbsp;PDO($configs[&#39;dsn&#39;],&nbsp;$configs[&#39;username&#39;],&nbsp;$configs[&#39;password&#39;],&nbsp;$configs[&#39;params&#39;]);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}catch(PDOException&nbsp;$e){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::throw_exception($e-&gt;getMessage());
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!self::$link){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::throw_exception(&#39;PDO连接错误&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::$link-&gt;exec(&#39;SET&nbsp;NAMES&nbsp;&#39;.DB_CHARSET);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::$dbVersion&nbsp;=&nbsp;self::$link-&gt;getAttribute(constant(&quot;PDO::ATTR_SERVER_VERSION&quot;));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::$connected&nbsp;=&nbsp;true;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unset($configs);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;得到所有记录
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$sql&nbsp;SQL语句
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;array&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;得到所有数据
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;getAll($sql&nbsp;=&nbsp;null){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($sql){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::query($sql);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$result&nbsp;=&nbsp;self::$PDOStatement-&gt;fetchAll(constant(&quot;PDO::FETCH_ASSOC&quot;));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$result;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;得到结果集中的一条记录
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$sql&nbsp;sql语句
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;array&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;返回一条数据
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;getRow($sql&nbsp;=&nbsp;null){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($sql&nbsp;!=&nbsp;null){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::query($sql);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$result&nbsp;=&nbsp;self::$PDOStatement-&gt;fetch(constant(&quot;PDO::FETCH_ASSOC&quot;));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$result;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;根据主键查找记录
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$tabName&nbsp;表名
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$priId&nbsp;&nbsp;&nbsp;主键id
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$field&nbsp;&nbsp;&nbsp;查询项
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;array&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一条记录
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;findById($tabName,&nbsp;$priId,&nbsp;$field=&#39;*&#39;){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$sql&nbsp;=&nbsp;&quot;SELECT&nbsp;%s&nbsp;FROM&nbsp;%s&nbsp;WHERE&nbsp;id=%d&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;self::getRow(sprintf($sql,&nbsp;self::parseField($field),&nbsp;$tabName,&nbsp;$priId));
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;执行普通查询
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$tables&nbsp;查询表名
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$where&nbsp;&nbsp;where
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$fields&nbsp;要查询字段
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$group&nbsp;&nbsp;group&nbsp;by
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$having&nbsp;having
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$order&nbsp;&nbsp;order
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$limit&nbsp;&nbsp;limit
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;array&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[description]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;find($tables,&nbsp;$where&nbsp;=&nbsp;null,&nbsp;$fields&nbsp;=&nbsp;&#39;*&#39;,&nbsp;$group&nbsp;=&nbsp;null,&nbsp;$having&nbsp;=&nbsp;null,&nbsp;$order&nbsp;=&nbsp;null,&nbsp;$limit&nbsp;=&nbsp;null){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$sql&nbsp;=&nbsp;&#39;SELECT&nbsp;&#39;.self::parseField($fields).&#39;&nbsp;FROM&nbsp;&#39;.$tables
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.self::parseWhere($where)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.self::parseGroup($group)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.self::parseHaving($having)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.self::parseOrder($order)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.self::parseLimit($limit);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$dataAll&nbsp;=&nbsp;self::getAll($sql);
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;count($dataAll)==1&nbsp;?&nbsp;$dataAll[0]&nbsp;:&nbsp;$dataAll;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;添加记录的操作
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;array&nbsp;$data&nbsp;&nbsp;要添加的内容
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;int&nbsp;$table&nbsp;受影响的条数
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;add($data,&nbsp;$table){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$keys&nbsp;=&nbsp;array_keys($data);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array_walk($keys,array(&#39;PDOMySQL&#39;,&#39;addSpecilChar&#39;));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$fieldsStr=join(&#39;,&#39;,$keys);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$values=&quot;&#39;&quot;.join(&quot;&#39;,&#39;&quot;,array_values($data)).&quot;&#39;&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$sql&nbsp;=&nbsp;&quot;INSERT&nbsp;{$table}({$fieldsStr})&nbsp;VALUES({$values})&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;self::execute($sql);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;更新记录
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;array&nbsp;$data&nbsp;&nbsp;要更新内容
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$table&nbsp;表名
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$where&nbsp;条件
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$order&nbsp;排序
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$limit&nbsp;限制
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;受影响条数
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;update($data,&nbsp;$table,&nbsp;$where&nbsp;=&nbsp;null,&nbsp;$order&nbsp;=&nbsp;null,&nbsp;$limit&nbsp;=&nbsp;null){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$sets&nbsp;=&nbsp;&#39;&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;($data&nbsp;as&nbsp;$key&nbsp;=&gt;&nbsp;$val)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$sets&nbsp;.=&nbsp;$key.&quot;=&#39;&quot;.$val.&quot;&#39;,&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$sets&nbsp;=&nbsp;rtrim($sets,&#39;,&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$sql&nbsp;=&nbsp;&quot;UPDATE&nbsp;{$table}&nbsp;SET&nbsp;{$sets}&nbsp;&quot;.self::parseWhere($where).self::parseOrder($order).self::parseLimit($limit);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;self::execute($sql);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;解析字段
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$fields&nbsp;字段
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;解析后的字段
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;parseField($fields){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(is_array($fields)){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array_walk($fields,&nbsp;array(&#39;PDOMySQL&#39;,&nbsp;&#39;addSpecilChar&#39;));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$fieldsStr&nbsp;=&nbsp;implode(&#39;,&#39;,$fields);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}elseif(is_string($fields)&nbsp;&amp;&amp;&nbsp;!empty($fields)){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(strpos($fields,&nbsp;&#39;`&#39;)&nbsp;===&nbsp;false){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$fields&nbsp;=&nbsp;explode(&#39;,&#39;,&nbsp;$fields);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array_walk($fields,&nbsp;array(&#39;PDOMySQL&#39;,&nbsp;&#39;addSpecilChar&#39;));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$fieldsStr&nbsp;=&nbsp;implode(&#39;,&#39;,$fields);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$fieldsStr&nbsp;=&nbsp;$fields;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$fieldsStr&nbsp;=&nbsp;&#39;*&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$fieldsStr;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;删除操作
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;&nbsp;$table&nbsp;表名
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;&nbsp;$where&nbsp;条件
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;&nbsp;$order&nbsp;排序
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;integer&nbsp;$limit&nbsp;限制
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;integer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;受影响条数
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;delete($table,&nbsp;$where=null,&nbsp;$order=null,&nbsp;$limit=0){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$sql&nbsp;=&nbsp;&quot;DELETE&nbsp;FROM&nbsp;{$table}&nbsp;&quot;.self::parseWhere($where).self::parseOrder($order).self::parseLimit($limit);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;self::execute($sql);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;得到最后执行的sql语句
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;string&nbsp;sql语句
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;getLastSql(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$link=self::$link;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!$link)&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;self::$queryStr;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;得到插入操作产生的AUTO_INCREMENT
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;int&nbsp;被操作id
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;getLastInsertId(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$link=self::$link;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!$link)&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;self::$lastInsertId;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;得到数据库的版本
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;float&nbsp;数据库版本
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;getDbVersion(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$link=self::$link;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!$link)&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;self::$dbVersion;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;得到数据库中的数据表
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;array&nbsp;所有数据表
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;showTbales(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$tables&nbsp;=&nbsp;[];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(self::query(&quot;SHOW&nbsp;TABLES&quot;)){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$result&nbsp;=&nbsp;self::getAll();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;($result&nbsp;as&nbsp;$key&nbsp;=&gt;&nbsp;$value)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$tables[$key]=current($value);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$tables;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;解析where字段
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$where&nbsp;字段
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;解析后的字段
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;parseWhere($where){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$whereStr&nbsp;=&nbsp;&#39;&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(is_string($where)&nbsp;&amp;&amp;&nbsp;!empty($where)){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$whereStr&nbsp;=&nbsp;$where;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;empty($whereStr)&nbsp;?&nbsp;&#39;&#39;&nbsp;:&nbsp;&#39;&nbsp;WHERE&nbsp;&#39;.$whereStr;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;解析分组字段group&nbsp;by
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$group&nbsp;字段
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;解析后的字段
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;parseGroup($group){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$groupStr&nbsp;=&nbsp;&#39;&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(is_array($group)){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$groupStr&nbsp;.=&nbsp;&#39;&nbsp;GROUP&nbsp;BY&nbsp;&#39;.implode(&#39;,&#39;,&nbsp;$group);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}elseif(is_string($group)&nbsp;&amp;&amp;&nbsp;!empty($group)){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$groupStr&nbsp;.=&nbsp;&#39;&nbsp;GROUP&nbsp;BY&nbsp;&#39;.$group;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;empty($groupStr)&nbsp;?&nbsp;&#39;&#39;&nbsp;:&nbsp;$groupStr;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;对分组进行二次筛选
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$having&nbsp;字段
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;解析后的字段
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;parseHaving($having){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$havingStr&nbsp;=&nbsp;&#39;&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(is_string($having)&nbsp;&amp;&amp;&nbsp;!empty($having)){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$havingStr&nbsp;=&nbsp;&#39;&nbsp;HAVING&nbsp;&#39;.$having;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$havingStr;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;解析order&nbsp;by
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$order&nbsp;字段
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;解析后的字段
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;parseOrder($order){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$orderStr&nbsp;=&nbsp;&#39;&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(is_array($order)){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$orderStr&nbsp;.=&nbsp;&#39;&nbsp;ORDER&nbsp;BY&nbsp;&#39;.join(&#39;,&#39;,$order);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}elseif(is_string($order)&nbsp;&amp;&amp;&nbsp;!empty($order)){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$orderStr&nbsp;.=&nbsp;&#39;&nbsp;ORDER&nbsp;BY&nbsp;&#39;.$order;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$orderStr;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;解析limit
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;strign&nbsp;$limit&nbsp;字段
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;strign&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;解析后的字段
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;parseLimit($limit){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$limitStr&nbsp;=&nbsp;&#39;&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(is_array($limit)){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(count($limit)&nbsp;&gt;&nbsp;1){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$limitStr&nbsp;=&nbsp;&#39;&nbsp;LIMIT&nbsp;&#39;.$limit[0].&#39;,&#39;.$limit[1];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$limitStr&nbsp;=&nbsp;&#39;&nbsp;LIMIT&nbsp;&#39;.$limit[0];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}elseif(!empty($limit)){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$limitStr&nbsp;.=&nbsp;&#39;&nbsp;LIMIT&nbsp;&#39;.$limit;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$limitStr;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;通过反引号引用字段
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;string&nbsp;&amp;$value&nbsp;不同类型字段
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;addSpecilChar(&amp;$value){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($value&nbsp;===&nbsp;&#39;*&#39;&nbsp;||&nbsp;strpos($value,&nbsp;&#39;.&#39;)&nbsp;!=&nbsp;false&nbsp;||&nbsp;strpos($value,&nbsp;&#39;`&#39;)&nbsp;!=&nbsp;false){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;不做处理
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}elseif(strpos($value,&nbsp;&#39;`&#39;)&nbsp;===&nbsp;false){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$value&nbsp;=&nbsp;&#39;`&#39;.trim($value).&#39;`&#39;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$value;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;执行增删改操作，返回受影响的记录条数
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$sql&nbsp;sql语句
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;受影响条数
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;execute($sql&nbsp;=&nbsp;null){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$link&nbsp;=&nbsp;self::$link;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!$link)&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::$queryStr&nbsp;=&nbsp;$sql;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!empty(self::$PDOStatement))&nbsp;self::free();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$result&nbsp;=&nbsp;$link-&gt;exec(self::$queryStr);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::haveErrorThrowException();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($result){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::$lastInsertId&nbsp;=&nbsp;$link-&gt;lastInsertId();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::$numRows&nbsp;=&nbsp;$result;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;self::$numRows;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;释放结果集
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;null&nbsp;null
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;free(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::$PDOStatement&nbsp;=&nbsp;null;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;query($sql&nbsp;=&nbsp;&#39;&#39;){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$link&nbsp;=&nbsp;self::$link;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!$link)&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;判断之前是否有结果集，如果有，释放结果集
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!empty(self::$PDOStatement))&nbsp;self::free();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::$queryStr&nbsp;=&nbsp;$sql;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::$PDOStatement&nbsp;=&nbsp;$link-&gt;prepare(self::$queryStr);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$res&nbsp;=&nbsp;self::$PDOStatement-&gt;execute();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::haveErrorThrowException();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$res;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;haveErrorThrowException(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$obj&nbsp;=&nbsp;empty(self::$PDOStatement)&nbsp;?&nbsp;self::$link&nbsp;:&nbsp;self::$PDOStatement;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$arrError&nbsp;=&nbsp;$obj-&gt;errorInfo();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($arrError[0]&nbsp;!=&nbsp;&#39;00000&#39;){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::$error&nbsp;=&nbsp;&#39;SQLStatus:&nbsp;&#39;.$arrError[0].&#39;&lt;br&nbsp;/&gt;SQLError:&nbsp;&#39;.$arrError[2].&#39;&lt;br&nbsp;/&gt;Error&nbsp;SQL:&nbsp;&#39;.self::$queryStr;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::throw_exception(self::$error);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(self::$queryStr&nbsp;==&nbsp;&#39;&#39;){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::throw_exception(&#39;没有执行的SQL语句&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;自定义错误处理
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;$errMsg&nbsp;错误信息
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;null&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;null
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;throw_exception($errMsg){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;$errMsg;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;销毁连接对象，关闭数据库
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;null&nbsp;null
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;close(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::$link&nbsp;=&nbsp;null;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><p>在场景中这样来使用，注释后的内容分别用来测试不同方法：</p><blockquote><p>index.php<br/></p></blockquote><pre class="prism-highlight prism-language-php">&lt;?php
+
+$PDOMySQL&nbsp;=&nbsp;new&nbsp;PDOMySQL();
+
+//&nbsp;查询全部记录
+$sql&nbsp;=&nbsp;&#39;SELECT&nbsp;*&nbsp;FROM&nbsp;cheat_exam&#39;;
+$res&nbsp;=&nbsp;$PDOMySQL-&gt;getAll($sql);
+
+//&nbsp;查询一条记录
+$sql&nbsp;=&nbsp;&#39;SELECT&nbsp;*&nbsp;FROM&nbsp;cheat_exam&nbsp;WHERE&nbsp;id=1&#39;;
+$res&nbsp;=&nbsp;$PDOMySQL-&gt;getRow($sql);
+
+//&nbsp;插入一条记录
+$sql&nbsp;=&nbsp;&#39;INSERT&nbsp;cheat_exam(name)&nbsp;VALUES&nbsp;(1)&#39;;
+$res&nbsp;=&nbsp;$PDOMySQL-&gt;execute($sql);
+echo&nbsp;$PDOMySQL::$lastInsertId;
+
+//&nbsp;删除一条记录
+$sql&nbsp;=&nbsp;&#39;DELETE&nbsp;FROM&nbsp;cheat_exam&nbsp;WHERE&nbsp;id=115&#39;;
+$res&nbsp;=&nbsp;$PDOMySQL-&gt;execute($sql);
+
+//&nbsp;更新一条记录
+$sql&nbsp;=&nbsp;&#39;UPDATE&nbsp;arr&nbsp;SET&nbsp;name=&quot;1&quot;&nbsp;WHERE&nbsp;id=1&#39;;
+$res&nbsp;=&nbsp;$PDOMySQL-&gt;execute($sql);
+
+//&nbsp;根据主键查询一条记录
+$tabName&nbsp;=&nbsp;&#39;cheat_exam&#39;;
+$priId&nbsp;=&nbsp;1;
+$fields=&#39;subject,name&#39;;
+$fields&nbsp;=&nbsp;array(&#39;subject&#39;,&#39;name&#39;);
+$res&nbsp;=&nbsp;$PDOMySQL-&gt;findById($tabName,&nbsp;$priId,&nbsp;$fields);
+
+//&nbsp;执行普通查询
+$tables&nbsp;=&nbsp;&#39;cheat_exam&#39;;
+$res&nbsp;=&nbsp;$PDOMySQL-&gt;find($tables);
+$res&nbsp;=&nbsp;$PDOMySQL-&gt;find($tables,&nbsp;&#39;id&gt;=30&#39;);
+$res&nbsp;=&nbsp;$PDOMySQL-&gt;find($tables,&nbsp;&#39;id&gt;=30&#39;,&nbsp;&#39;subject,name&#39;);
+$res&nbsp;=&nbsp;$PDOMySQL-&gt;find($tables,&nbsp;&#39;id&gt;=30&#39;,&nbsp;&#39;*&#39;,&nbsp;&#39;subject&#39;);
+$res&nbsp;=&nbsp;$PDOMySQL-&gt;find($tables,&nbsp;&#39;id&gt;=30&#39;,&nbsp;&#39;*&#39;,&nbsp;&#39;subject&#39;,&nbsp;&#39;count(*)&gt;=8&#39;);
+$res&nbsp;=&nbsp;$PDOMySQL-&gt;find($tables,&nbsp;&#39;id&gt;=30&#39;,&nbsp;&#39;*&#39;,&nbsp;&#39;&#39;,&nbsp;&#39;&#39;,&nbsp;&#39;id&nbsp;desc&#39;);
+$res&nbsp;=&nbsp;$PDOMySQL-&gt;find($tables,&nbsp;&#39;id&gt;=30&#39;,&nbsp;&#39;*&#39;,&nbsp;&#39;&#39;,&nbsp;&#39;&#39;,&nbsp;&#39;id&nbsp;desc&#39;,&nbsp;5);
+
+//&nbsp;更新一条记录
+$data&nbsp;=&nbsp;[
+&nbsp;&nbsp;&nbsp;&nbsp;&#39;subject&#39;&nbsp;=&gt;&nbsp;&#39;imooc&#39;,
+&nbsp;&nbsp;&nbsp;&nbsp;&#39;name&#39;&nbsp;=&gt;&nbsp;&#39;name&#39;
+&nbsp;&nbsp;&nbsp;&nbsp;];
+$table&nbsp;=&nbsp;&quot;cheat_exam&quot;;
+$res&nbsp;=&nbsp;$PDOMySQL-&gt;add($data,&nbsp;$table);
+//&nbsp;也是更新操作
+$data&nbsp;=&nbsp;[
+&nbsp;&nbsp;&nbsp;&nbsp;&#39;subject&#39;&nbsp;=&gt;&nbsp;&#39;imooc&#39;,
+&nbsp;&nbsp;&nbsp;&nbsp;&#39;name&#39;&nbsp;=&gt;&nbsp;&#39;name&#39;
+&nbsp;&nbsp;&nbsp;&nbsp;];
+$table&nbsp;=&nbsp;&quot;cheat_exam&quot;;
+$res&nbsp;=&nbsp;$PDOMySQL-&gt;update($data,&nbsp;$table,&nbsp;&#39;id&lt;=3&#39;,&nbsp;&#39;id&nbsp;desc&#39;,&nbsp;5);
+
+//&nbsp;删除操作
+$table&nbsp;=&nbsp;&quot;cheat_exam&quot;;
+$res&nbsp;=&nbsp;$PDOMySQL-&gt;delete($table,&nbsp;&#39;id&lt;3&#39;);
+
+//&nbsp;得到数据表
+$res&nbsp;=&nbsp;$PDOMySQL-&gt;showTbales();
+
+print_r($res);</pre><p>会打印出不同结果。<br/></p><p>The End.</p>    
+</article>
+<nav class="article-pagination">
+    
+    <a href="index084d.html?id=46" class="article-prev">前一篇: PHP-GTK初体验：用最简单的方式运行环境，并实现Hello World</a>    <a href="index4944.html?id=48" class="article-next">后一篇: 站在巨人的肩膀上写代码——Spl中的三种数据结构解析</a></nav>
+
+
+
+<footer>
+<p class="copy">Copyright Hower'Blog Rights Reserved.&nbsp;&nbsp;. Powered By <a href="http://www.zblogcn.com/" rel="nofollow" target="_blank">Z-BlogPHP</a>. theme by <a href="http://www.laiweishang.com/" target="_blank">微商货源</a></p></footer>
+</body>
+<!-- Mirrored from oldblog.smallyu.net/?id=47 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2020 07:50:25 GMT -->
+</html>
+
+
+<!--5.87 ms , 9 query , 733kb memory , 0 error-->

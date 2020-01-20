@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from oldblog.smallyu.net/?id=46 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2020 07:50:25 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>PHP-GTK初体验：用最简单的方式运行环境，并实现Hello World_未分类_smallyu</title>
+<meta name="keywords" content="GTK"/>
+<meta name="description" content="首先用最简单的方式把php-gtk运行起来，在gtk扩展官网（http://gtk.php.net/&nbsp;）下载Binaries版本：点击链接直接下载：http://gtk.php.net/distributions/PHP55-GTK2.zip&nbsp;（PH..."/>
+<meta name="author" content="smallyu">
+<link rel='prev' title='PHP写简单爬虫抓取太工教务处通告中的，考试作弊学生名单' href='index98dc.html?id=45' />
+<link rel='next' title='一个简单的对于Mysql的PDO操作类（PHP）' href='indexbb33.html?id=47' />
+<link rel='canonical' href='index084d.html?id=46' />
+<link rel='shortlink' href='index084d.html?id=46' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <style type="text/css">
+    .home::before {
+    font-size: 90px;
+    font-family: 'efe-icons';
+    content: "";
+    display: block;
+    margin-bottom: 10px;
+}
+</style>
+<link rel="stylesheet" href="zb_users/theme/ydefe/style/page.min.css" type="text/css">
+<script src="zb_system/script/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="zb_system/script/zblogphp.js" type="text/javascript"></script>
+<script src="zb_system/script/c_html_js_add.js" type="text/javascript"></script>
+</head><body>
+
+<aside>
+	<a class="home" href="index.html" title="smallyu">
+	    <img src="zb_users/theme/ydefe/style/images/logo.png" /><br />
+        <abbr title="EFE">smallyu</abbr>
+    </a>
+  <nav> <a href="Hello%20World.html" target="_blank">Hello World</a> </nav>
+  <div class="sidebarleft-mb">
+    <ul class="product-overview-side-mb">
+      <li id="nvabar-item-index"><a href="index.html">首页</a></li>
+<li id="navbar-page-16"><a href="index2728.html?id=16">关于</a></li>
+    </ul>
+  </div>
+      
+<div class="sidebarleft widget_navbar">
+   
+  <div class="product-overview-side efe-desc widget_divNavBar_inner"><div class="sidebg"><li id="nvabar-item-index"><a href="index.html">首页</a></li>
+<li id="navbar-page-16"><a href="index2728.html?id=16">关于</a></li>
+</div></div>
+         
+ 
+</div>
+<div class="sidebarleft widget_archives">
+<h4>文章归档</h4>
+   
+         
+  <ul class="product-overview-side ">
+ <li><a href="indexb0b4.html?date=2017-8">2017年8月 (6)</a></li>
+<li><a href="indexcb7e.html?date=2017-7">2017年7月 (2)</a></li>
+<li><a href="index276d.html?date=2017-6">2017年6月 (3)</a></li>
+<li><a href="index5523.html?date=2017-5">2017年5月 (2)</a></li>
+<li><a href="indexb2e3.html?date=2017-4">2017年4月 (2)</a></li>
+<li><a href="index10ae.html?date=2017-3">2017年3月 (3)</a></li>
+<li><a href="index8cef.html?date=2017-2">2017年2月 (3)</a></li>
+<li><a href="index8bcc.html?date=2017-1">2017年1月 (4)</a></li>
+<li><a href="index9f2f.html?date=2016-12">2016年12月 (1)</a></li>
+<li><a href="index50f5.html?date=2016-11">2016年11月 (2)</a></li>
+<li><a href="indexf32d.html?date=2016-10">2016年10月 (3)</a></li>
+<li><a href="index91d7.html?date=2016-9">2016年9月 (1)</a></li>
+<li><a href="index917c.html?date=2016-8">2016年8月 (6)</a></li>
+<li><a href="index34d3.html?date=2016-7">2016年7月 (1)</a></li>
+<li><a href="indexe6af.html?date=2016-6">2016年6月 (4)</a></li>
+<li><a href="index1d06.html?date=2016-5">2016年5月 (4)</a></li>
+ </ul>
+ 
+</div>  </aside>
+
+
+<article>
+    
+        <h1><a href="index084d.html?id=46">PHP-GTK初体验：用最简单的方式运行环境，并实现Hello World</a></h1>
+    
+
+    <div class="article-meta">
+        <span class="article-author">
+        
+        <i class="fa fa-pencil"></i>
+        <a target="_blank" href="indexd381.html?auth=1" title="otakustay">smallyu</a>
+    
+</span>
+
+        <time><i class="fa fa-clock-o"></i> 2017-02-22</time>
+
+        
+        <span class="article-tags"><i class="fa fa-tag"></i> <a href="index9f68.html?tags=41" target="_blank">GTK</a>&nbsp;</span>
+	    
+    
+    </div>
+        <p>首先用最简单的方式把php-gtk运行起来，在gtk扩展官网（<a href="http://gtk.php.net/" _src="http://gtk.php.net/">http://gtk.php.net/</a>&nbsp;）下载Binaries版本：</p><p>点击链接直接下载：<a href="http://gtk.php.net/distributions/PHP55-GTK2.zip" _src="http://gtk.php.net/distributions/PHP55-GTK2.zip">http://gtk.php.net/distributions/PHP55-GTK2.zip</a>&nbsp;（PHP-GTK-2.0.1 PHP 5.5）</p><p>官方文档提供了三种安装扩展的方式，<br/></p><ol class=" list-paddingleft-2" style="list-style-type: decimal;"><li><p>使用Gnope</p></li><li><p>手动安装</p></li><li><p>使用CVS编译</p></li></ol><p>事实上我们在下载.zip压缩包后解压到任意文件夹下，不需要任何配置或者编译行为。（如果只是先体验一下GTK实现的GUI窗口）</p><p><span style="font-size: 14px;"><strong>一段简单的Hello World脚本</strong></span></p><p>在任意目录下新建一个文件，后缀名为.phpw，比如hello.phpw，编辑文件，写入以下代码：</p><pre class="prism-highlight prism-language-php">&lt;?php
+if&nbsp;(!class_exists(&#39;gtk&#39;))&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;die(&quot;Please&nbsp;load&nbsp;the&nbsp;php-gtk2&nbsp;module&nbsp;in&nbsp;your&nbsp;php.ini\r\n&quot;);
+}
+
+$wnd&nbsp;=&nbsp;new&nbsp;GtkWindow();
+$wnd-&gt;set_title(&#39;Hello&nbsp;world&#39;);
+$wnd-&gt;connect_simple(&#39;destroy&#39;,&nbsp;array(&#39;gtk&#39;,&nbsp;&#39;main_quit&#39;));
+
+$lblHello&nbsp;=&nbsp;new&nbsp;GtkLabel(&quot;Just&nbsp;wanted&nbsp;to&nbsp;say\r\n&#39;Hello&nbsp;world!&#39;&quot;);
+$wnd-&gt;add($lblHello);
+
+$wnd-&gt;show_all();
+Gtk::main();
+?&gt;</pre><p>保存后，<span style="text-decoration: underline;">右击文件&gt;选择打开方式&gt;其它应用&gt;在这台电脑上浏览应用</span><span style="text-decoration: none;">，选择我们下载并解压好的文件夹下的php-win.exe来执行文件</span>，</p><p><img src="zb_users/upload/2017/02/201702221487764340907853.png" title="14.png" alt="14.png"/></p><p>就可以得到这样的运行结果：<br/></p><p><img src="zb_users/upload/2017/02/201702221487764357819986.png" title="2.png" alt="2.png"/></p><p><span style="font-size: 14px;"><strong>检查PHP-GTK是否可用</strong></span></p><pre class="prism-highlight prism-language-php">if&nbsp;(!class_exists(&#39;gtk&#39;))&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;die(&quot;Please&nbsp;load&nbsp;the&nbsp;php-gtk2&nbsp;module&nbsp;in&nbsp;your&nbsp;php.ini\r\n&quot;);
+}</pre><p><span style="font-size: 14px;">这里我们通过检查gtk类是否存在来确定PHP-GTK是否可用。不像PHP 4和PHP-GTK 1，你不应该通过d1()尝试加载PHP-GTK模块，因为这在PHP 5中是过时的，不应该用于新代码的编写。所以我们打印一个信息，如果模块不可用，就由用户来启用它。</span></p><p><span style="font-size: 14px;"><strong>创建一个窗口</strong></span></p><pre class="prism-highlight prism-language-php">$wnd&nbsp;=&nbsp;new&nbsp;GtkWindow();</pre><p>创建一个窗口就像实例化一个新的对象一样简单：变量$wnd得到了新对象的引用。如果你已经使用PHP 4和PHP-GTK 1，你可以在关键词new之前不使用&amp;符号，因为在PHP 5中它会被自动创建。</p><p><span style="font-size: 14px;"><strong>设置窗口标题</strong></span></p><pre class="prism-highlight prism-language-php">$wnd-&gt;set_title(&#39;Hello&nbsp;world&#39;);</pre><p>为了使窗口在任务栏中更容易被认出，我们设置了标题，仅仅调用了对象的一个方法。</p><p><span style="font-size: 14px;"><strong>使关闭（操作）变得干净</strong></span></p><pre class="prism-highlight prism-language-php">$wnd-&gt;connect_simple(&#39;destroy&#39;,&nbsp;array(&#39;gtk&#39;,&nbsp;&#39;main_quit&#39;));</pre><p>这是代码中第一段稍有意思的部分：参数&#39;destory&#39;传递到了静态方法Gtk::main_quit中。它告诉GTK当窗口被关闭或者销毁的时候退出主循环。（后面会提到关于主循环的内容）</p><p><strong>创建一个展示文本的标签</strong><br/></p><pre class="prism-highlight prism-language-php">$lblHello&nbsp;=&nbsp;new&nbsp;GtkLabel(&quot;Just&nbsp;wanted&nbsp;to&nbsp;say\r\n&#39;Hello&nbsp;world!&#39;&quot;);</pre><p>和上面一样，我们创建了一个新的部件。这次我们想要展示一小段文本，GtkLabel类可以完美的实现这个任务。</p><p><strong>添加标签到窗口</strong></p><pre class="prism-highlight prism-language-php">$wnd-&gt;add($lblHello);</pre><p>我们直接把标签添加到了窗口。<br/></p><p><strong>设置窗口为可见的</strong></p><pre class="prism-highlight prism-language-php">$wnd-&gt;show_all();</pre><p>到现在，我们在屏幕上看不见任何内容。为了使窗口可见，必须调用show()方法，它将会使窗口可见，但不是标签——我们在标签之上（也就是窗口对象上）调用show()。如果你有多个控件比如按钮、复选框或者其它窗口部件不方便一一调用，可以使用show_all()方法来显示所有可见的部件。</p><p><strong>开启主循环</strong></p><pre class="prism-highlight prism-language-php">Gtk::main();</pre><p>在设置完所有配置项之后，我们需要确定窗口停留在打开状态并且会对用户的行为进行反馈。一段普通的PHP脚本在文件执行结束后会停止，因此需要启动GTK主循环。它会保持应用处于运行状态并且会回应用户事件。如果事件发生，它会执行相应的回调。</p><p>（原内容：<a href="http://gtk.php.net/manual/en/html/tutorials/tutorials.helloworld.html" _src="http://gtk.php.net/manual/en/html/tutorials/tutorials.helloworld.html">http://gtk.php.net/manual/en/html/tutorials/tutorials.helloworld.html</a>&nbsp;）<br/></p><p><br/></p><p><strong>更加先进的Hello World脚本</strong></p><p>下面的参考内容会比上面的hello world脚本实现更多的功能。这里我们创建了一个登陆框，可以由用户来输入用户名和密码。当用户点击登陆，如果用户名或者密码为空，文本域可以检查错误并显示。</p><p><img src="zb_users/upload/2017/02/201702221487764374675166.png" title="helloadvanced.png" alt="helloadvanced.png"/></p><p>首先我们先创建一个窗口，设置标题并设置当窗口销毁停止主循环（上面已经实现过）：<br/></p><pre class="prism-highlight prism-language-php">$wnd&nbsp;=&nbsp;new&nbsp;GtkWindow();
+$wnd-&gt;set_title(&#39;Login&#39;);
+$wnd-&gt;connect_simple(&#39;destroy&#39;,&nbsp;array(&#39;gtk&#39;,&nbsp;&#39;main_quit&#39;));</pre><p>接下来我们的任务是创建所有要显示的部件，先是两个文本域用户名和密码：</p><pre class="prism-highlight prism-language-php">$txtUsername&nbsp;=&nbsp;new&nbsp;GtkEntry();
+$txtPassword&nbsp;=&nbsp;new&nbsp;GtkEntry();</pre><p>我们要分别给两个文本域一个描述的标签：</p><pre class="prism-highlight prism-language-php">//&nbsp;第二个参数意思是把下划线解析为下划线
+$lblUsername&nbsp;=&nbsp;new&nbsp;GtkLabel(&#39;_Username&#39;,&nbsp;true);
+$lblPassword&nbsp;=&nbsp;new&nbsp;GtkLabel(&#39;_Password&#39;,&nbsp;true);</pre><p>最后我们需要两个按钮，登录和取消：<br/></p><pre class="prism-highlight prism-language-php">$btnLogin&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;new&nbsp;GtkButton(&#39;_Login&#39;);
+$btnCancel&nbsp;&nbsp;&nbsp;=&nbsp;new&nbsp;GtkButton(&#39;_Cancel&#39;);</pre><p>你可能注意到GtkLable类的构造函数中通过第二个参数设置解析下划线_为一个字符，但是GtkButton类中并没有，因为它会自动设置，这一点是需要记忆的。<br/></p><p>现在标签需要知道哪个行为被激活时使用哪个相应的内容，这样来做：</p><pre class="prism-highlight prism-language-php">$lblUsername-&gt;set_mnemonic_widget($txtUsername);
+$lblPassword-&gt;set_mnemonic_widget($txtPassword);</pre><p>然后我们要决定哪个按钮被点击对应哪个事件。取消按钮会关闭窗口，结束程序，登录按钮会检查文本域是否为空等一系列操作：</p><pre class="prism-highlight prism-language-php">$btnCancel-&gt;connect_simple(&#39;clicked&#39;,&nbsp;array($wnd,&nbsp;&#39;destroy&#39;));
+$btnLogin&nbsp;-&gt;connect_simple(&#39;clicked&#39;,&nbsp;&#39;login&#39;,&nbsp;$wnd,&nbsp;$txtUsername,&nbsp;$txtPassword);</pre><p>我们把三个参数$wnd、$txtUsername和$txtPassword传递给了登录函数，接下来的操作会用它们从文本域获取值，并且在所有工作结束后关闭窗口。</p><p>现在我们创建了我们需要的所有按钮，它们被添加到了窗口。GtkWindow库是功能容器，它可以捆绑为一个单独的部件，所以我们需要这个容器来更好的展示我们的其它元素。这里决定使用GtkTabel，它可以保持标签在一列，紧随其后的是确定域：<br/></p><pre class="prism-highlight prism-language-php">$tbl&nbsp;=&nbsp;new&nbsp;GtkTable(3,&nbsp;2);
+$tbl-&gt;attach($lblCredit,&nbsp;0,&nbsp;2,&nbsp;0,&nbsp;1);
+$tbl-&gt;attach($lblUsername,&nbsp;0,&nbsp;1,&nbsp;1,&nbsp;2);
+$tbl-&gt;attach($txtUsername,&nbsp;1,&nbsp;2,&nbsp;1,&nbsp;2);
+$tbl-&gt;attach($lblPassword,&nbsp;0,&nbsp;1,&nbsp;2,&nbsp;3);
+$tbl-&gt;attach($txtPassword,&nbsp;1,&nbsp;2,&nbsp;2,&nbsp;3);</pre><p>（$lblCredit仅仅是一个消息标签），按钮有它们自己的GtkHButtonBox类，因为这个允许它们更美观的布局多个按钮：</p><pre class="prism-highlight prism-language-php">$bbox&nbsp;=&nbsp;new&nbsp;GtkHButtonBox();
+$bbox-&gt;set_layout(Gtk::BUTTONBOX_EDGE);
+$bbox-&gt;add($btnCancel);
+$bbox-&gt;add($btnLogin);</pre><p>对于布局最后要做的事情是把表格和按钮添加到窗口。没有直接的方法，因为GtkWindow是一个GtkBin（类库？），只能包含一个部件。所以我们需要另外的容器，这次用GtkVBox：<br/></p><pre class="prism-highlight prism-language-php">$vbox&nbsp;=&nbsp;new&nbsp;GtkVBox();
+$vbox-&gt;pack_start($tbl);
+$vbox-&gt;pack_start($bbox);</pre><p>它们所有都需要显示：</p><pre class="prism-highlight prism-language-php">$wnd-&gt;add($vbox);
+$wnd-&gt;show_all();
+Gtk::main();</pre><p>最后要做的事情，是当用户点击登陆按钮时候的回调事件。它需要检查用户名和密码是否为空，如果它们长度为0，则显示错误信息。如果一切ok，窗口将会关闭并且程序会继续运行来加载主窗口。<br/></p><p>从部件获取文本很简单，我们用GtkEntry的get_text()方法就能实现：</p><pre class="prism-highlight prism-language-php">$strUsername&nbsp;=&nbsp;$txtUsername-&gt;get_text();
+$strPassword&nbsp;=&nbsp;$txtPassword-&gt;get_text();</pre><p>检查工作可以用平常的php函数。如果发生错误就显示一个带有错误消息的信息。GtkMessageDialog来完成这些工作是理想的，它可以自动创建图标和按钮（确认，是或否）：<br/></p><pre class="prism-highlight prism-language-php">$dialog&nbsp;=&nbsp;new&nbsp;GtkMessageDialog($wnd,&nbsp;Gtk::DIALOG_MODAL,&nbsp;Gtk::MESSAGE_ERROR,&nbsp;Gtk::BUTTONS_OK,&nbsp;$errors);
+$dialog-&gt;set_markup(&quot;The&nbsp;following&nbsp;errors&nbsp;occured:\r\n&lt;span&nbsp;foreground=&#39;red&#39;&gt;&quot;&nbsp;.&nbsp;$errors&nbsp;.&nbsp;&quot;&lt;/span&gt;&quot;);
+$dialog-&gt;run();
+$dialog-&gt;destroy();</pre><p>现在可以确定你把登录功能函数放到了主循环中并使其运行。<br/></p><p><strong>完整代码</strong><br/></p><pre class="prism-highlight prism-language-php">&lt;?php
+/**
+*&nbsp;&nbsp;&nbsp;Here&nbsp;we&nbsp;create&nbsp;a&nbsp;login&nbsp;window.
+*&nbsp;&nbsp;&nbsp;It&nbsp;has&nbsp;a&nbsp;username&nbsp;and&nbsp;a&nbsp;password&nbsp;field,&nbsp;and&nbsp;a
+*&nbsp;&nbsp;&nbsp;Cancel&nbsp;and&nbsp;Login&nbsp;button.&nbsp;Some&nbsp;error&nbsp;checking
+*&nbsp;&nbsp;&nbsp;is&nbsp;being&nbsp;done&nbsp;when&nbsp;the&nbsp;user&nbsp;clicks&nbsp;&quot;Login&quot;.
+*/
+
+if&nbsp;(!class_exists(&#39;gtk&#39;))&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;die(&quot;Please&nbsp;load&nbsp;the&nbsp;php-gtk2&nbsp;module&nbsp;in&nbsp;your&nbsp;php.ini\r\n&quot;);
+}
+
+/**
+*&nbsp;&nbsp;&nbsp;This&nbsp;function&nbsp;gets&nbsp;called&nbsp;as&nbsp;soon&nbsp;as&nbsp;the&nbsp;user&nbsp;
+*&nbsp;&nbsp;&nbsp;clicks&nbsp;on&nbsp;the&nbsp;Login&nbsp;button.
+*
+*&nbsp;&nbsp;&nbsp;@param&nbsp;GtkWindow&nbsp;$wnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;login&nbsp;window,&nbsp;needed&nbsp;to&nbsp;close&nbsp;it
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when&nbsp;all&nbsp;is&nbsp;ok
+*&nbsp;&nbsp;&nbsp;@param&nbsp;GtkEntry&nbsp;$txtUsername&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;username&nbsp;text&nbsp;field,&nbsp;used&nbsp;to&nbsp;get
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;username
+*&nbsp;&nbsp;&nbsp;@param&nbsp;GtkEntry&nbsp;$txtPassword&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;password&nbsp;widget&nbsp;to&nbsp;retrieve&nbsp;the
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;password
+*/
+function&nbsp;login(GtkWindow&nbsp;$wnd,&nbsp;GtkEntry&nbsp;$txtUsername,&nbsp;GtkEntry&nbsp;$txtPassword)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;//fetch&nbsp;the&nbsp;values&nbsp;from&nbsp;the&nbsp;widgets&nbsp;into&nbsp;variables
+&nbsp;&nbsp;&nbsp;&nbsp;$strUsername&nbsp;=&nbsp;$txtUsername-&gt;get_text();
+&nbsp;&nbsp;&nbsp;&nbsp;$strPassword&nbsp;=&nbsp;$txtPassword-&gt;get_text();
+
+&nbsp;&nbsp;&nbsp;&nbsp;//Do&nbsp;some&nbsp;error&nbsp;checking
+&nbsp;&nbsp;&nbsp;&nbsp;$errors&nbsp;=&nbsp;null;
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(strlen($strUsername)&nbsp;==&nbsp;0)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$errors&nbsp;.=&nbsp;&quot;Username&nbsp;is&nbsp;missing.\r\n&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(strlen($strPassword)&nbsp;==&nbsp;0)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$errors&nbsp;.=&nbsp;&quot;No&nbsp;password&nbsp;given.\r\n&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;($errors&nbsp;!==&nbsp;null)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//There&nbsp;was&nbsp;at&nbsp;least&nbsp;one&nbsp;error.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//We&nbsp;show&nbsp;a&nbsp;message&nbsp;box&nbsp;with&nbsp;the&nbsp;errors
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$dialog&nbsp;=&nbsp;new&nbsp;GtkMessageDialog($wnd,&nbsp;Gtk::DIALOG_MODAL,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gtk::MESSAGE_ERROR,&nbsp;Gtk::BUTTONS_OK,&nbsp;$errors);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$dialog-&gt;set_markup(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;The&nbsp;following&nbsp;errors&nbsp;occured:\r\n&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.&nbsp;&quot;&lt;span&nbsp;foreground=&#39;red&#39;&gt;&quot;&nbsp;.&nbsp;$errors&nbsp;.&nbsp;&quot;&lt;/span&gt;&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$dialog-&gt;run();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$dialog-&gt;destroy();
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//No&nbsp;error.&nbsp;You&nbsp;would&nbsp;need&nbsp;to&nbsp;hide&nbsp;the&nbsp;dialog&nbsp;now
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//instead&nbsp;of&nbsp;destroying&nbsp;it&nbsp;(because&nbsp;when&nbsp;you&nbsp;destroy&nbsp;it,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Gtk::main_quit()&nbsp;gets&nbsp;called)&nbsp;and&nbsp;show&nbsp;the&nbsp;main&nbsp;window
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$wnd-&gt;destroy();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+
+//Create&nbsp;the&nbsp;login&nbsp;window
+$wnd&nbsp;=&nbsp;new&nbsp;GtkWindow();
+$wnd-&gt;set_title(&#39;Login&#39;);
+//Close&nbsp;the&nbsp;main&nbsp;loop&nbsp;when&nbsp;the&nbsp;window&nbsp;is&nbsp;destroyed
+$wnd-&gt;connect_simple(&#39;destroy&#39;,&nbsp;array(&#39;gtk&#39;,&nbsp;&#39;main_quit&#39;));
+
+
+//Set&nbsp;up&nbsp;all&nbsp;the&nbsp;widgets&nbsp;we&nbsp;need
+$lblCredit&nbsp;&nbsp;&nbsp;=&nbsp;new&nbsp;GtkLabel(&#39;Please&nbsp;provide&nbsp;your&nbsp;data&#39;);
+//The&nbsp;second&nbsp;parameter&nbsp;says&nbsp;that&nbsp;the&nbsp;underscore&nbsp;should&nbsp;be&nbsp;parsed&nbsp;as&nbsp;underline
+$lblUsername&nbsp;=&nbsp;new&nbsp;GtkLabel(&#39;_Username&#39;,&nbsp;true);
+$lblPassword&nbsp;=&nbsp;new&nbsp;GtkLabel(&#39;_Password&#39;,&nbsp;true);
+$txtUsername&nbsp;=&nbsp;new&nbsp;GtkEntry();
+$txtPassword&nbsp;=&nbsp;new&nbsp;GtkEntry();
+$btnLogin&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;new&nbsp;GtkButton(&#39;_Login&#39;);
+$btnCancel&nbsp;&nbsp;&nbsp;=&nbsp;new&nbsp;GtkButton(&#39;_Cancel&#39;);
+
+
+//Which&nbsp;widget&nbsp;should&nbsp;be&nbsp;activated&nbsp;when&nbsp;the&nbsp;
+//&nbsp;mnemonic&nbsp;(Alt+U&nbsp;or&nbsp;Alt+P)&nbsp;is&nbsp;pressed?
+$lblUsername-&gt;set_mnemonic_widget($txtUsername);
+$lblPassword-&gt;set_mnemonic_widget($txtPassword);
+//Hide&nbsp;the&nbsp;password
+//$txtPassword-&gt;set_invisible_char(&#39;*&#39;);
+
+//Destroy&nbsp;the&nbsp;window&nbsp;when&nbsp;the&nbsp;user&nbsp;clicks&nbsp;Cancel
+$btnCancel-&gt;connect_simple(&#39;clicked&#39;,&nbsp;array($wnd,&nbsp;&#39;destroy&#39;));
+//Call&nbsp;the&nbsp;login&nbsp;function&nbsp;when&nbsp;the&nbsp;user&nbsp;clicks&nbsp;on&nbsp;Login
+$btnLogin-&gt;connect_simple(&#39;clicked&#39;,&nbsp;&#39;login&#39;,&nbsp;$wnd,&nbsp;$txtUsername,&nbsp;$txtPassword);
+
+
+//Lay&nbsp;out&nbsp;all&nbsp;the&nbsp;widgets&nbsp;in&nbsp;the&nbsp;table
+$tbl&nbsp;=&nbsp;new&nbsp;GtkTable(3,&nbsp;2);
+$tbl-&gt;attach($lblCredit,&nbsp;0,&nbsp;2,&nbsp;0,&nbsp;1);
+$tbl-&gt;attach($lblUsername,&nbsp;0,&nbsp;1,&nbsp;1,&nbsp;2);
+$tbl-&gt;attach($txtUsername,&nbsp;1,&nbsp;2,&nbsp;1,&nbsp;2);
+$tbl-&gt;attach($lblPassword,&nbsp;0,&nbsp;1,&nbsp;2,&nbsp;3);
+$tbl-&gt;attach($txtPassword,&nbsp;1,&nbsp;2,&nbsp;2,&nbsp;3);
+
+
+//Add&nbsp;the&nbsp;buttons&nbsp;to&nbsp;a&nbsp;button&nbsp;box
+$bbox&nbsp;=&nbsp;new&nbsp;GtkHButtonBox();
+$bbox-&gt;set_layout(Gtk::BUTTONBOX_EDGE);
+$bbox-&gt;add($btnCancel);
+$bbox-&gt;add($btnLogin);
+
+
+//Add&nbsp;the&nbsp;table&nbsp;and&nbsp;the&nbsp;button&nbsp;box&nbsp;to&nbsp;a&nbsp;vbox
+$vbox&nbsp;=&nbsp;new&nbsp;GtkVBox();
+$vbox-&gt;pack_start($tbl);
+$vbox-&gt;pack_start($bbox);
+
+//Add&nbsp;the&nbsp;vbox&nbsp;to&nbsp;the&nbsp;window
+$wnd-&gt;add($vbox);
+//Show&nbsp;all&nbsp;widgets
+$wnd-&gt;show_all();
+//Start&nbsp;the&nbsp;main&nbsp;loop
+Gtk::main();
+?&gt;</pre><p>（原内容：<a href="http://gtk.php.net/manual/en/html/tutorials/tutorials.helloadvanced.html" _src="http://gtk.php.net/manual/en/html/tutorials/tutorials.helloadvanced.html">http://gtk.php.net/manual/en/html/tutorials/tutorials.helloadvanced.html</a>）</p><p>The End.<br/></p>    
+</article>
+<nav class="article-pagination">
+    
+    <a href="index98dc.html?id=45" class="article-prev">前一篇: PHP写简单爬虫抓取太工教务处通告中的，考试作弊学生名单</a>    <a href="indexbb33.html?id=47" class="article-next">后一篇: 一个简单的对于Mysql的PDO操作类（PHP）</a></nav>
+
+
+
+<footer>
+<p class="copy">Copyright Hower'Blog Rights Reserved.&nbsp;&nbsp;. Powered By <a href="http://www.zblogcn.com/" rel="nofollow" target="_blank">Z-BlogPHP</a>. theme by <a href="http://www.laiweishang.com/" target="_blank">微商货源</a></p></footer>
+</body>
+<!-- Mirrored from oldblog.smallyu.net/?id=46 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2020 07:50:26 GMT -->
+</html>
+
+
+<!--6.24 ms , 9 query , 721kb memory , 0 error-->
