@@ -3,7 +3,7 @@ const path = require('path');
 
 const rootDir = path.resolve(__dirname, '..');
 const host = fs.readFileSync(path.join(rootDir, 'CNAME'), 'utf8').trim() || 'oldblog.smallyu.net';
-const siteUrl = `http://${host}/`;
+const siteUrl = `https://${host}/`;
 
 function decodeEntities(value) {
   return value
